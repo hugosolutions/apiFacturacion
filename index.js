@@ -1,16 +1,20 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware para permitir JSON
+// Middleware JSON
 app.use(express.json());
 
+// Rutas
+const enviarFacturaRoute = require("./routes/enviarFactura");
+const consultarFacturaRoute = require("./routes/consultarFactura");
+
+app.use("/enviarFactura", enviarFacturaRoute);
+app.use("/consultarFactura", consultarFacturaRoute);
+
 // Ruta de prueba
-app.get('/', (req, res) => {
-  res.send('API de Facturación funcionando correctamente ✅');
+app.get("/", (req, res) => {
+  res.send("API de Facturación funcionando ✅");
 });
 
-// Iniciar servidor
-app.listen(PORT, () => {
-  console.log(`Servidor corriendo en http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`Servidor corriendo en http://localhost:${PORT}`));

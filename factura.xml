@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ECF>
+  
+<Encabezado>
+  
+<IdDoc>
+  <TipoeCF>01</TipoeCF>
+  <eNCF>B0100000001</eNCF>
+  <FechaVencimientoSecuencia>2025-10-31</FechaVencimientoSecuencia>
+  <IndicadorEnvioDiferido>0</IndicadorEnvioDiferido>
+  <IndicadorMontoGravado>1</IndicadorMontoGravado>
+  <IndicadorServicioTodoIncluido>0</IndicadorServicioTodoIncluido>
+  <TipoIngresos>Venta</TipoIngresos>
+  <TipoPago>Contado</TipoPago>
+  <FechaLimitePago>2025-11-05</FechaLimitePago>
+  <TerminoPago>0</TerminoPago>
+  <TablaFormasPago>
+    
+    <FormaDePago>
+      <FormaPago>01</FormaPago>
+      <MontoPago>1000</MontoPago>
+    </FormaDePago>
+  </TablaFormasPago>
+  <TipoCuentaPago>Ahorros</TipoCuentaPago>
+  <NumeroCuentaPago>123456789</NumeroCuentaPago>
+  <BancoPago>BancoPrueba</BancoPago>
+  <FechaDesde>2025-10-01</FechaDesde>
+  <FechaHasta>2025-10-31</FechaHasta>
+  <TotalPaginas>2</TotalPaginas>
+</IdDoc>
+  
+<Emisor>
+  <RNCEmisor>131234567</RNCEmisor>
+  <RazonSocialEmisor>Mi Empresa S.A.</RazonSocialEmisor>
+  <NombreComercial>Mi Tienda</NombreComercial>
+  <Sucursal>Principal</Sucursal>
+  <DireccionEmisor>Calle 123, Santo Domingo</DireccionEmisor>
+  <Municipio>Santo Domingo</Municipio>
+  <Provincia>DN</Provincia>
+  <TablaTelefonoEmisor>
+    <TelefonoEmisor>8091234567</TelefonoEmisor><TelefonoEmisor>8097654321</TelefonoEmisor>
+  </TablaTelefonoEmisor>
+  <CorreoEmisor>info@mitienda.com</CorreoEmisor>
+  <WebSite>www.mitienda.com</WebSite>
+  <ActividadEconomica>Comercio</ActividadEconomica>
+  <CodigoVendedor>001</CodigoVendedor>
+  <NumeroFacturaInterna>1001</NumeroFacturaInterna>
+  <NumeroPedidoInterno>5001</NumeroPedidoInterno>
+  <ZonaVenta>Zona1</ZonaVenta>
+  <RutaVenta>RutaA</RutaVenta>
+  <InformacionAdicionalEmisor>Sin información adicional</InformacionAdicionalEmisor>
+  <FechaEmision>2025-10-30</FechaEmision>
+</Emisor>
+  
+<Comprador>
+  <RNCComprador>402345678</RNCComprador><NombreComprador>Cliente Prueba</NombreComprador><DireccionComprador>Av. Principal 456</DireccionComprador><TelefonoComprador>8091112233</TelefonoComprador><CorreoComprador>cliente@prueba.com</CorreoComprador>
+</Comprador>
+  
+<InformacionesAdicionales>
+  <Nota1>Esta es una nota adicional</Nota1>
+</InformacionesAdicionales>
+  
+<Transporte>
+  <TipoTransporte>Terrestre</TipoTransporte><NombreTransportista>Transportes SRL</NombreTransportista>
+</Transporte>
+  
+<Totales>
+  <MontoTotal>1500</MontoTotal><ITBISTotal>180</ITBISTotal><MontoExento>0</MontoExento><MontoImpuestoAdicional>0</MontoImpuestoAdicional>
+</Totales>
+  
+<OtraMoneda>
+  <Moneda>USD</Moneda><TipoCambio>56.50</TipoCambio>
+</OtraMoneda>
+</Encabezado>
+  
+<DetallesItems>
+  
+<Item>
+  <NumeroLinea>1</NumeroLinea>
+  <TablaCodigosItem>
+  
+<CodigosItem>
+  <TipoCodigo>01</TipoCodigo>
+  <CodigoItem>A001</CodigoItem>
+</CodigosItem>
+</TablaCodigosItem>
+  <IndicadorFacturacion>1</IndicadorFacturacion>
+  
+<Retencion>
+  <IndicadorAgenteRetencionoPercepcion>0</IndicadorAgenteRetencionoPercepcion>
+  <MontoITBISRetenido>0</MontoITBISRetenido>
+  <MontoISRRetenido>0</MontoISRRetenido>
+</Retencion>
+  <NombreItem>Producto Prueba</NombreItem>
+  <IndicadorBienoServicio>B</IndicadorBienoServicio>
+  <DescripcionItem>Descripción del producto de prueba</DescripcionItem>
+  <CantidadItem>2</CantidadItem>
+  <UnidadMedida>UND</UnidadMedida>
+  <CantidadReferencia>2</CantidadReferencia>
+  <UnidadReferencia>UND</UnidadReferencia>
+  <TablaSubcantidad>
+  
+<SubcantidadItem>
+  <Subcantidad>1</Subcantidad>
+  <CodigoSubcantidad>S001</CodigoSubcantidad>
+</SubcantidadItem>
+</TablaSubcantidad>
+  <GradosAlcohol>0</GradosAlcohol>
+  <PrecioUnitarioReferencia>500</PrecioUnitarioReferencia>
+  <FechaElaboracion>2025-10-01</FechaElaboracion>
+  <FechaVencimientoItem>2025-12-01</FechaVencimientoItem>
+  <PrecioUnitarioItem>500</PrecioUnitarioItem>
+  <DescuentoMonto>50</DescuentoMonto>
+  <TablaSubDescuento>
+  
+<SubDescuento>
+  <TipoSubDescuento>D</TipoSubDescuento>
+  <SubDescuentoPorcentaje>10</SubDescuentoPorcentaje>
+  <MontoSubDescuento>5</MontoSubDescuento>
+</SubDescuento>
+</TablaSubDescuento>
+  <RecargoMonto>0</RecargoMonto>
+  <TablaSubRecargo>
+  
+</TablaSubRecargo>
+  <TablaImpuestoAdicional>
+  
+</TablaImpuestoAdicional>
+  
+<OtraMonedaDetalle>
+  <PrecioOtraMoneda>8.85</PrecioOtraMoneda>
+  <DescuentoOtraMoneda>0.88</DescuentoOtraMoneda>
+  <RecargoOtraMoneda>0</RecargoOtraMoneda>
+  <MontoItemOtraMoneda>17.7</MontoItemOtraMoneda>
+</OtraMonedaDetalle>
+  <MontoItem>950</MontoItem>
+</Item>
+</DetallesItems>
+  
+<Subtotales>
+  
+<Subtotal>
+  <NumeroSubTotal>1</NumeroSubTotal>
+  <DescripcionSubtotal>Subtotal 1</DescripcionSubtotal>
+  <Orden>1</Orden>
+  <SubTotalMontoGravadoTotal>1000</SubTotalMontoGravadoTotal>
+  <SubTotalMontoGravadoI1>1000</SubTotalMontoGravadoI1>
+  <SubTotalMontoGravadoI2>0</SubTotalMontoGravadoI2>
+  <SubTotalMontoGravadoI3>0</SubTotalMontoGravadoI3>
+  <SubTotaITBIS>180</SubTotaITBIS>
+  <SubTotaITBIS1>180</SubTotaITBIS1>
+  <SubTotaITBIS2>0</SubTotaITBIS2>
+  <SubTotaITBIS3>0</SubTotaITBIS3>
+  <SubTotalImpuestoAdicional>0</SubTotalImpuestoAdicional>
+  <SubTotalExento>0</SubTotalExento>
+  <MontoSubTotal>1180</MontoSubTotal>
+  <Lineas>1</Lineas>
+</Subtotal>
+</Subtotales>
+  
+<DescuentosORecargos>
+  
+<DescuentoORecargo>
+  <NumeroLinea>1</NumeroLinea>
+  <TipoAjuste>D</TipoAjuste>
+  <IndicadorNorma1007>0</IndicadorNorma1007>
+  <DescripcionDescuentooRecargo>Descuento Prueba</DescripcionDescuentooRecargo>
+  <TipoValor>$</TipoValor>
+  <ValorDescuentooRecargo>50</ValorDescuentooRecargo>
+  <MontoDescuentooRecargo>50</MontoDescuentooRecargo>
+  <MontoDescuentooRecargoOtraMoneda>0.88</MontoDescuentooRecargoOtraMoneda>
+  <IndicadorFacturacionDescuentooRecargo>1</IndicadorFacturacionDescuentooRecargo>
+</DescuentoORecargo>
+</DescuentosORecargos>
+  
+<Paginacion>
+  
+<Pagina>
+  <PaginaNo>1</PaginaNo>
+  <NoLineaDesde>1</NoLineaDesde>
+  <NoLineaHasta>1</NoLineaHasta>
+  <SubtotalMontoGravadoPagina>1000</SubtotalMontoGravadoPagina>
+  <SubtotalMontoGravado1Pagina>1000</SubtotalMontoGravado1Pagina>
+  <SubtotalMontoGravado2Pagina>0</SubtotalMontoGravado2Pagina>
+  <SubtotalMontoGravado3Pagina>0</SubtotalMontoGravado3Pagina>
+  <SubtotalExentoPagina>0</SubtotalExentoPagina>
+  <SubtotalItbisPagina>180</SubtotalItbisPagina>
+  <SubtotalItbis1Pagina>180</SubtotalItbis1Pagina>
+  <SubtotalItbis2Pagina>0</SubtotalItbis2Pagina>
+  <SubtotalItbis3Pagina>0</SubtotalItbis3Pagina>
+  <SubtotalImpuestoAdicionalPagina>0</SubtotalImpuestoAdicionalPagina>
+  <SubtotalImpuestoAdicional>
+    <SubtotalImpuestoSelectivoConsumoEspecificoPagina>0</SubtotalImpuestoSelectivoConsumoEspecificoPagina>
+    <SubtotalOtrosImpuesto>0</SubtotalOtrosImpuesto>
+  </SubtotalImpuestoAdicional>
+  <MontoSubtotalPagina>1180</MontoSubtotalPagina>
+  <SubtotalMontoNoFacturablePagina>0</SubtotalMontoNoFacturablePagina>
+</Pagina>
+</Paginacion>
+  
+<InformacionReferencia>
+  <NCFModificado>B0100000000</NCFModificado>
+  <RNCOtroContribuyente>402345678</RNCOtroContribuyente>
+  <FechaNCFModificado>2025-10-29</FechaNCFModificado>
+  <CodigoModificacion>1</CodigoModificacion>
+</InformacionReferencia>
+  
+<FechaHoraFirma>2025-10-30T10:00:00</FechaHoraFirma>
+<any_element>anyType</any_element>
+</ECF>
