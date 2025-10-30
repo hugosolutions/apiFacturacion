@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { crearFactura } = require("../utils/facturaGenerator"); // importa la función
+const { crearFactura } = require("../utils/generarFactura"); // importa la función
 
 router.post("/", async (req, res) => {
   try {
