@@ -670,4 +670,4 @@ function crearFactura(datosFactura) {
 }
 
 
-module.exports = { crearFactura };
+// module.exports = { crearFactura };
