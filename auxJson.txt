@@ -1,0 +1,582 @@
+{
+  "Encabezado": {
+    "IdDoc": {
+      "TipoeCF": "<<[tipoFactura].[valor]>>",
+      "eNCF": "<<[ncf]>>",
+      "FechaVencimientoSecuencia": "<<[FechaVencimientoSecuencia]>>",
+      "IndicadorEnvioDiferido": "<<LOOKUP("1","tablaFacturaElectronica","id","valor")>>",
+      "IndicadorMontoGravado": "<<LOOKUP("2","tablaFacturaElectronica","id","valor")>>",
+      "IndicadorServicioTodoIncluido": "<<LOOKUP("3","tablaFacturaElectronica","id","valor")>>",
+      "TipoIngresos": "<<LOOKUP("4","tablaFacturaElectronica","id","valor")>>",
+      "TipoPago": "<<IF([tipoVenta]=2,2,1)>>",
+      "FechaLimitePago": "<<TEXT([fechaCredito],"dd-MM-AAAA")>>",
+      "TerminoPago": "<<LOOKUP("5","tablaFacturaElectronica","id","valor")>>",
+      "TablaFormasPago": [
+        {
+          "FormaPago": "<<LOOKUP("6","tablaFacturaElectronica","id","valor")>>",
+          "MontoPago": "<<LOOKUP("7","tablaFacturaElectronica","id","valor")>>"
+        }
+      ],
+      "TipoCuentaPago": "<<LOOKUP("8","tablaFacturaElectronica","id","valor")>>",
+      "NumeroCuentaPago": "<<LOOKUP("9","tablaFacturaElectronica","id","valor")>>",
+      "BancoPago": "<<LOOKUP("10","tablaFacturaElectronica","id","valor")>>",
+      "FechaDesde": "<<LOOKUP("11","tablaFacturaElectronica","id","valor")>>",
+      "FechaHasta": "<<LOOKUP("12","tablaFacturaElectronica","id","valor")>>",
+      "TotalPaginas": "<<LOOKUP("13","tablaFacturaElectronica","id","valor")>>"
+    },
+    "Emisor": {
+      "RNCEmisor": "<<LOOKUP("1","emisor","id","rnc")>>",
+      "RazonSocialEmisor": "<<LOOKUP("1","emisor","id","razonSocial")>>",
+      "NombreComercial": "<<LOOKUP("1","emisor","id","nombreComercial")>>",
+      "Sucursal": "<<LOOKUP("1","emisor","id","sucursal")>>",
+      "DireccionEmisor": "<<LOOKUP("1","emisor","id","direccion")>>",
+      "Municipio": "<<LOOKUP("1","emisor","id","municipio")>>",
+      "Provincia": "<<LOOKUP("1","emisor","id","provincia")>>",
+      "Telefonos": [
+        "<<LOOKUP("1","emisor","id","telefono1")>>",
+        "<<LOOKUP("1","emisor","id","telefono2")>>"
+      ],
+      "CorreoEmisor": "<<LOOKUP("1","emisor","id","correo")>>",
+      "WebSite": "<<LOOKUP("1","emisor","id","webSite")>>",
+      "ActividadEconomica": "<<LOOKUP("1","emisor","id","actividadEconomica")>>",
+      "CodigoVendedor": "<<LOOKUP("1","emisor","id","codigoVendedor")>>",
+      "NumeroFacturaInterna": "<<[id]>>",
+      "NumeroPedidoInterno": "<<[_RowNumber]>>",
+      "ZonaVenta": "<<LOOKUP("1","emisor","id","zonaVenta")>>",
+      "RutaVenta": "<<LOOKUP("1","emisor","id","rutaVenta")>>",
+      "InformacionAdicionalEmisor": "<<LOOKUP("1","emisor","id","informacionAdicional")>>",
+      "FechaEmision": "<<TEXT([fecha],"dd- MM-AAAA")>>"
+    },
+    "Comprador": {
+      "RNCComprador": "<<[idCliente].[cedula]>>",
+      "RazonSocialComprador": "<<[idCliente].[razonSocial]>>",
+      "ContactoComprador": "<<[idCliente].[numero]>>",
+      "DireccionComprador": "<<[idCliente].[direccion]>>",
+      "MunicipioComprador": "<<[idCliente].[municipio]>>",
+      "ProvinciaComprador": "<<[idCliente].[provincia]>>",
+      "FechaEntrega": "<<TEXT([fecha],"dd- MM-AAAA")>>",
+      "ContactoEntrega": "<<[idCliente].[numero]>>",
+      "DireccionEntrega": "<<[idCliente].[direccion]>>",
+      "TelefonoAdicional": "<<[idCliente].[numero]>>",
+      "FechaOrdenCompra": "<<TEXT([fecha],"dd- MM-AAAA")>>",
+      "NumeroOrdenCompra": "<<[_RowNumber]>>",
+      "CodigoInternoComprador": "<<[idCliente].[id]>>",
+      "InformacionAdicionalComprador": "<<[idCliente].[informacionAdicional]>>"
+    },
+    "InformacionesAdicionales": {
+      "FechaEmbarque": "<<LOOKUP("1","informacionesAdicionales","id","FechaEmbarque")>>",
+      "NumeroEmbarque": "<<LOOKUP("1","informacionesAdicionales","id","NumeroEmbarque")>>",
+      "NumeroContenedor": "<<LOOKUP("1","informacionesAdicionales","id","NumeroContenedor")>>",
+      "NumeroReferencia": "<<LOOKUP("1","informacionesAdicionales","id","NumeroReferencia")>>",
+      "PesoBruto": "<<LOOKUP("1","informacionesAdicionales","id","PesoBruto")>>",
+      "PesoNeto": "<<LOOKUP("1","informacionesAdicionales","id","PesoNeto")>>",
+      "UnidadPesoBruto": "<<LOOKUP("1","informacionesAdicionales","id","UnidadPesoBruto")>>",
+      "UnidadPesoNeto": "<<LOOKUP("1","informacionesAdicionales","id","UnidadPesoNeto")>>",
+      "CantidadBulto": "<<LOOKUP("1","informacionesAdicionales","id","CantidadBulto")>>",
+      "UnidadBulto": "<<LOOKUP("1","informacionesAdicionales","id","UnidadBulto")>>",
+      "VolumenBulto": "<<LOOKUP("1","informacionesAdicionales","id","VolumenBulto")>>",
+      "UnidadVolumen": "<<LOOKUP("1","informacionesAdicionales","id","UnidadVolumen")>>"
+    },
+    "Transporte": {
+      "Conductor": "<<LOOKUP("1","transporte","id","Conductor")>>",
+      "DocumentoTransporte": "<<LOOKUP("1","transporte","id","DocumentoTransporte")>>",
+      "Ficha": "<<LOOKUP("1","transporte","id","Ficha")>>",
+      "Placa": "<<LOOKUP("1","transporte","id","Placa")>>",
+      "RutaTransporte": "<<LOOKUP("1","transporte","id","RutaTransporte")>>",
+      "ZonaTransporte": "<<LOOKUP("1","transporte","id","ZonaTransporte")>>",
+      "NumeroAlbaran": "<<LOOKUP("1","transporte","id","NumeroAlbaran")>>"
+    },
+    "Totales": {
+      "MontoGravadoTotal": "<<[subTotal]>>",
+      "MontoGravadoI1": "<<[MontoGravadoI1]>>",
+      "MontoGravadoI2": "<<[MontoGravadoI2]>>",
+      "MontoGravadoI3": "<<[MontoGravadoI3]>>",
+      "MontoExento": "<<[MontoExento]>>",
+      "ITBIS1": "<<[ITBIS1]>>",
+      "ITBIS2": "<<[ITBIS2]>>",
+      "ITBIS3": "<<[ITBIS3]>>",
+      "TotalITBIS": "<<[calculoITBIS]>>",
+      "TotalITBIS1": "<<[TotalITBIS1]>>",
+      "TotalITBIS2": "<<[TotalITBIS2]>>",
+      "TotalITBIS3": "<<[TotalITBIS3]>>",
+      "MontoImpuestoAdicional": "<<[MontoImpuestoAdicional]>>",
+      "ImpuestosAdicionales": <<IF(
+  COUNT(
+    GROUPBY(
+      SELECT(ventaDetalle[tipoImpuesto],
+        [idVenta]=[_THISROW].[id]
+      ),
+      [tipoImpuesto]
+    )
+  ) > 1,
+  "
+  \"ImpuestosAdicionales\": [
+    " & 
+    TEXT_JOIN(
+      ",
+      ",
+      SELECT(
+        LIST(
+          CONCATENATE(
+            \"{\",
+            \"\\\"TipoImpuesto\\\": \\\"\", [tipoImpuesto], \"\\\",\",
+            \"\\\"TasaImpuestoAdicional\\\": \\\"\", [valorITBIS], \"\\\",\",
+            \"\\\"MontoImpuestoSelectivoConsumoEspecifico\\\": \\\"\", 
+              TEXT(SUM(
+                SELECT(ventaDetalle[montoITBIS],
+                  AND(
+                    [idVenta]=[_THISROW].[id],
+                    [tipoImpuesto]=[_THISROW-1].[tipoImpuesto]
+                  )
+                )
+              )),
+            \"\\\",\",
+            \"\\\"MontoImpuestoSelectivoConsumoAdvalorem\\\": \\\"0\\\",\",
+            \"\\\"OtrosImpuestosAdicionales\\\": \\\"0\\\"\",
+            \"}\"
+          )
+        ),
+        AND(
+          [idVenta]=[_THISROW].[id],
+          IN(
+            [tipoImpuesto],
+            INDEX(
+              GROUPBY(
+                SELECT(ventaDetalle[tipoImpuesto],
+                  [idVenta]=[_THISROW].[id]
+                ),
+                [tipoImpuesto]
+              ),
+              2,
+              COUNT(
+                GROUPBY(
+                  SELECT(ventaDetalle[tipoImpuesto],
+                    [idVenta]=[_THISROW].[id]
+                  ),
+                  [tipoImpuesto]
+                )
+              )
+            )
+          )
+        )
+      )
+    )
+    & "
+  ]"
+, 
+""
+)>>
+},
+    "OtraMoneda": {
+      "Moneda": "<<[Moneda]>>",
+      "TipoCambio": "<<[TipoCambio]>>",
+      "MontoGravadoTotalOtraMoneda": "<<[MontoGravadoTotalOtraMoneda]>>",
+      "MontoGravado1OtraMoneda": "<<[MontoGravado1OtraMoneda]>>",
+      "MontoGravado2OtraMoneda": "<<[MontoGravado2OtraMoneda]>>",
+      "MontoGravado3OtraMoneda": "<<[MontoGravado3OtraMoneda]>>",
+      "MontoExentoOtraMoneda": "<<[MontoExentoOtraMoneda]>>",
+      "TotalITBISOtraMoneda": "<<[TotalITBISOtraMoneda]>>",
+      "TotalITBIS1OtraMoneda": "<<[TotalITBIS1OtraMoneda]>>",
+      "TotalITBIS2OtraMoneda": "<<[TotalITBIS2OtraMoneda]>>",
+      "TotalITBIS3OtraMoneda": "<<[TotalITBIS3OtraMoneda]>>",
+      "MontoImpuestoAdicionalOtraMoneda": "<<[MontoImpuestoAdicionalOtraMoneda]>>"
+    }
+  },
+  "DetallesItems": [
+  <<START:VentaDetalle>>
+  {
+    "NumeroLinea": "<<[_RowNumber]>>",
+    "TablaCodigosItem": [
+      {
+        "TipoCodigo": "01",
+        "CodigoItem": "<<[producto].[codigo]>>"
+      }
+    ],
+    "IndicadorFacturacion": "1",
+    "Retencion": {
+      "IndicadorAgenteRetencionoPercepcion": "<<[IndicadorAgenteRetencionoPercepcion]>>",
+      "MontoITBISRetenido": "<<[MontoITBISRetenido]>>",
+      "MontoISRRetenido": "<<[MontoISRRetenido]>>"
+    },
+    "NombreItem": "<<[producto].[nombre]>>",
+    "IndicadorBienoServicio": "<<[producto].[indicadorBienoServicio]>>",
+    "DescripcionItem": "<<[producto].[descripcion]>>",
+    "CantidadItem": "<<[cantidad]>>",
+    "UnidadMedida": "<<[unidadMedida]>>",
+    "CantidadReferencia": "<<[cantidadReferencia]>>",
+    "UnidadReferencia": "<<[unidadReferencia]>>",
+    "TablaSubcantidad": [
+      {
+        "Subcantidad": "<<[subcantidad]>>",
+        "CodigoSubcantidad": "<<[codigoSubcantidad]>>"
+      }
+    ],
+    "GradosAlcohol": "<<[gradosAlcohol]>>",
+    "PrecioUnitarioReferencia": "<<[precioReferencia]>>",
+    "FechaElaboracion": "<<[fechaElaboracion]>>",
+    "FechaVencimientoItem": "<<[fechaVencimientoItem]>>",
+    "PrecioUnitarioItem": "<<[precio]>>",
+    "DescuentoMonto": "<<[descuentoMonto]>>",
+    "TablaSubDescuento": [
+      {
+        "TipoSubDescuento": "<<[tipoSubDescuento]>>",
+        "SubDescuentoPorcentaje": "<<[subDescuentoPorcentaje]>>",
+        "MontoSubDescuento": "<<[montoSubDescuento]>>"
+      }
+    ],
+    "RecargoMonto": "<<[recargoMonto]>>",
+    "TablaSubRecargo": [
+      {
+        "TipoSubRecargo": "<<[tipoSubRecargo]>>",
+        "SubRecargoPorcentaje": "<<[subRecargoPorcentaje]>>",
+        "MontoSubRecargo": "<<[montoSubRecargo]>>"
+      }
+    ],
+    "TablaImpuestoAdicional": [
+      {
+        "TipoImpuesto": "<<[tipoImpuesto]>>",
+        "TasaImpuestoAdicional": "<<[valorITBIS]>>",
+        "MontoImpuestoSelectivoConsumoEspecifico": "<<[MontoImpuestoSelectivoConsumoEspecifico]>>",
+        "MontoImpuestoSelectivoConsumoAdvalorem": "<<[MontoImpuestoSelectivoConsumoAdvalorem]>>",
+        "OtrosImpuestosAdicionales": "<<[OtrosImpuestosAdicionales]>>"
+      }
+    ],
+    "OtraMonedaDetalle": {
+      "TipoMoneda": "<<[TipoMoneda]>>",
+      "TipoCambio": "<<[TipoCambio]>>",
+      "MontoGravadoTotalOtraMoneda": "<<[MontoGravadoTotalOtraMoneda]>>",
+      "MontoExentoOtraMoneda": "<<[MontoExentoOtraMoneda]>>",
+      "TotalITBISOtraMoneda": "<<[TotalITBISOtraMoneda]>>",
+      "MontoTotalOtraMoneda": "<<[MontoTotalOtraMoneda]>>"
+    },
+    "MontoItem": "<<[MontoItem]>>"
+  }
+  <<END>>
+],
+  "Subtotales": [
+  {
+    "NumeroSubTotal": "<<[NumeroSubTotal]>>",
+    "TipoSubTotal": "<<[TipoSubTotal]>>",
+    "DescripcionSubtotal": "<<[DescripcionSubtotal]>>",
+    "Orden": "<<[Orden]>>",
+    "SubTotalMontoGravadoTotal": "<<[SubTotalMontoGravadoTotal]>>",
+    "SubTotalMontoGravadoI1": "<<[SubTotalMontoGravadoI1]>>",
+    "SubTotalMontoGravadoI2": "<<[SubTotalMontoGravadoI2]>>",
+    "SubTotalMontoGravadoI3": "<<[SubTotalMontoGravadoI3]>>",
+    "SubTotalITBIS": "<<[SubTotalITBIS]>>",
+    "SubTotalITBIS1": "<<[SubTotalITBIS1]>>",
+    "SubTotalITBIS2": "<<[SubTotalITBIS2]>>",
+    "SubTotalITBIS3": "<<[SubTotalITBIS3]>>",
+    "SubTotalImpuestoAdicional": "<<[SubTotalImpuestoAdicional]>>",
+    "SubTotalExento": "<<[SubTotalExento]>>",
+    "MontoSubTotal": "<<[MontoSubTotal]>>",
+    "Lineas": "<<[Lineas]>>"
+  }
+],
+  "DescuentosORecargos": [
+  {
+    "NumeroLinea": "<<[NumeroLinea]>>",
+    "TipoAjuste": "<<[TipoAjuste]>>",
+    "IndicadorNorma1007": "<<[IndicadorNorma1007]>>",
+    "DescripcionDescuentooRecargo": "<<[DescripcionDescuentooRecargo]>>",
+    "TipoValor": "<<[TipoValor]>>",
+    "ValorDescuentooRecargo": "<<[ValorDescuentooRecargo]>>",
+    "MontoDescuentooRecargo": "<<[MontoDescuentooRecargo]>>",
+    "MontoDescuentooRecargoOtraMoneda": "<<[MontoDescuentooRecargoOtraMoneda]>>",
+    "IndicadorFacturacionDescuentooRecargo": "<<[IndicadorFacturacionDescuentooRecargo]>>"
+  }
+],
+  "Pagina": [
+    {
+      "PaginaNo": "<<[PaginaNo]>>",
+      "NoLineaDesde": "<<[NoLineaDesde]>>",
+      "NoLineaHasta": "<<[NoLineaHasta]>>",
+      "SubtotalMontoGravadoPagina": "<<[SubtotalMontoGravadoPagina]>>",
+      "SubtotalMontoGravado1Pagina": "<<[SubtotalMontoGravado1Pagina]>>",
+      "SubtotalMontoGravado2Pagina": "<<[SubtotalMontoGravado2Pagina]>>",
+      "SubtotalMontoGravado3Pagina": "<<[SubtotalMontoGravado3Pagina]>>",
+      "SubtotalExentoPagina": "<<[SubtotalExentoPagina]>>",
+      "SubtotalItbisPagina": "<<[SubtotalItbisPagina]>>",
+      "SubtotalItbis1Pagina": "<<[SubtotalItbis1Pagina]>>",
+      "SubtotalItbis2Pagina": "<<[SubtotalItbis2Pagina]>>",
+      "SubtotalItbis3Pagina": "<<[SubtotalItbis3Pagina]>>",
+      "SubtotalImpuestoAdicionalPagina": "<<[SubtotalImpuestoAdicionalPagina]>>",
+      "SubtotalImpuestoAdicional": {
+        "SubtotalImpuestoSelectivoConsumoEspecificoPagina": "<<[SubtotalImpuestoSelectivoConsumoEspecificoPagina]>>",
+        "SubtotalOtrosImpuesto": "<<[SubtotalOtrosImpuesto]>>"
+      },
+      "MontoSubtotalPagina": "<<[MontoSubtotalPagina]>>",
+      "SubtotalMontoNoFacturablePagina": "<<[SubtotalMontoNoFacturablePagina]>>"
+    }
+  ],
+  "InformacionReferencia": {
+    "NCFModificado": "<<[NCFModificado]>>",
+    "RNCOtroContribuyente": "<<[RNCOtroContribuyente]>>",
+    "FechaNCFModificado": "<<[FechaNCFModificado]>>",
+    "CodigoModificacion": "<<[CodigoModificacion]>>"
+  },
+}
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+
+{
+  "Encabezado": {
+    "IdDoc": {
+      "TipoeCF": "<<[tipoFactura].[valor]>>",
+      "eNCF": "<<[ncf]>>",
+      "FechaVencimientoSecuencia": "<<[FechaVencimientoSecuencia]>>",
+      "IndicadorEnvioDiferido": "<<LOOKUP("1","tablaFacturaElectronica","id","valor")>>",
+      "IndicadorMontoGravado": "<<LOOKUP("2","tablaFacturaElectronica","id","valor")>>",
+      "IndicadorServicioTodoIncluido": "<<LOOKUP("3","tablaFacturaElectronica","id","valor")>>",
+      "TipoIngresos": "<<LOOKUP("4","tablaFacturaElectronica","id","valor")>>",
+      "TipoPago": "<<IF([tipoVenta]=2,2,1)>>",
+      "FechaLimitePago": "<<TEXT([fechaCredito],"dd-MM-AAAA")>>",
+      "TerminoPago": "<<LOOKUP("5","tablaFacturaElectronica","id","valor")>>",
+      "TablaFormasPago": [
+        {
+          "FormaPago": "<<LOOKUP("6","tablaFacturaElectronica","id","valor")>>",
+          "MontoPago": "<<LOOKUP("7","tablaFacturaElectronica","id","valor")>>"
+        }
+      ],
+      "TipoCuentaPago": "<<LOOKUP("8","tablaFacturaElectronica","id","valor")>>",
+      "NumeroCuentaPago": "<<LOOKUP("9","tablaFacturaElectronica","id","valor")>>",
+      "BancoPago": "<<LOOKUP("10","tablaFacturaElectronica","id","valor")>>",
+      "FechaDesde": "<<LOOKUP("11","tablaFacturaElectronica","id","valor")>>",
+      "FechaHasta": "<<LOOKUP("12","tablaFacturaElectronica","id","valor")>>",
+      "TotalPaginas": "<<LOOKUP("13","tablaFacturaElectronica","id","valor")>>"
+    },
+    "Emisor": {
+      "RNCEmisor": "<<LOOKUP("1","emisor","id","rnc")>>",
+      "RazonSocialEmisor": "<<LOOKUP("1","emisor","id","razonSocial")>>",
+      "NombreComercial": "<<LOOKUP("1","emisor","id","nombreComercial")>>",
+      "Sucursal": "<<LOOKUP("1","emisor","id","sucursal")>>",
+      "DireccionEmisor": "<<LOOKUP("1","emisor","id","direccion")>>",
+      "Municipio": "<<LOOKUP("1","emisor","id","municipio")>>",
+      "Provincia": "<<LOOKUP("1","emisor","id","provincia")>>",
+      "Telefonos": [
+        "<<LOOKUP("1","emisor","id","telefono1")>>",
+        "<<LOOKUP("1","emisor","id","telefono2")>>"
+      ],
+      "CorreoEmisor": "<<LOOKUP("1","emisor","id","correo")>>",
+      "WebSite": "<<LOOKUP("1","emisor","id","webSite")>>",
+      "ActividadEconomica": "<<LOOKUP("1","emisor","id","actividadEconomica")>>",
+      "CodigoVendedor": "<<LOOKUP("1","emisor","id","codigoVendedor")>>",
+      "NumeroFacturaInterna": "<<[id]>>",
+      "NumeroPedidoInterno": "<<[_RowNumber]>>",
+      "ZonaVenta": "<<LOOKUP("1","emisor","id","zonaVenta")>>",
+      "RutaVenta": "<<LOOKUP("1","emisor","id","rutaVenta")>>",
+      "InformacionAdicionalEmisor": "<<LOOKUP("1","emisor","id","informacionAdicional")>>",
+      "FechaEmision": "<<TEXT([fecha],"dd- MM-AAAA")>>"
+    },
+    "Comprador": {
+      "RNCComprador": "<<[idCliente].[cedula]>>",
+      "RazonSocialComprador": "<<[idCliente].[razonSocial]>>",
+      "ContactoComprador": "<<[idCliente].[numero]>>",
+      "DireccionComprador": "<<[idCliente].[direccion]>>",
+      "MunicipioComprador": "<<[idCliente].[municipio]>>",
+      "ProvinciaComprador": "<<[idCliente].[provincia]>>",
+      "FechaEntrega": "<<TEXT([fecha],"dd- MM-AAAA")>>",
+      "ContactoEntrega": "<<[idCliente].[numero]>>",
+      "DireccionEntrega": "<<[idCliente].[direccion]>>",
+      "TelefonoAdicional": "<<[idCliente].[numero]>>",
+      "FechaOrdenCompra": "<<TEXT([fecha],"dd- MM-AAAA")>>",
+      "NumeroOrdenCompra": "<<[_RowNumber]>>",
+      "CodigoInternoComprador": "<<[idCliente].[id]>>",
+      "InformacionAdicionalComprador": "<<[idCliente].[informacionAdicional]>>"
+    },
+    "InformacionesAdicionales": {
+      "FechaEmbarque": "<<LOOKUP("1","informacionesAdicionales","id","FechaEmbarque")>>",
+      "NumeroEmbarque": "<<LOOKUP("1","informacionesAdicionales","id","NumeroEmbarque")>>",
+      "NumeroContenedor": "<<LOOKUP("1","informacionesAdicionales","id","NumeroContenedor")>>",
+      "NumeroReferencia": "<<LOOKUP("1","informacionesAdicionales","id","NumeroReferencia")>>",
+      "PesoBruto": "<<LOOKUP("1","informacionesAdicionales","id","PesoBruto")>>",
+      "PesoNeto": "<<LOOKUP("1","informacionesAdicionales","id","PesoNeto")>>",
+      "UnidadPesoBruto": "<<LOOKUP("1","informacionesAdicionales","id","UnidadPesoBruto")>>",
+      "UnidadPesoNeto": "<<LOOKUP("1","informacionesAdicionales","id","UnidadPesoNeto")>>",
+      "CantidadBulto": "<<LOOKUP("1","informacionesAdicionales","id","CantidadBulto")>>",
+      "UnidadBulto": "<<LOOKUP("1","informacionesAdicionales","id","UnidadBulto")>>",
+      "VolumenBulto": "<<LOOKUP("1","informacionesAdicionales","id","VolumenBulto")>>",
+      "UnidadVolumen": "<<LOOKUP("1","informacionesAdicionales","id","UnidadVolumen")>>"
+    },
+    "Transporte": {
+      "Conductor": "<<LOOKUP("1","transporte","id","Conductor")>>",
+      "DocumentoTransporte": "<<LOOKUP("1","transporte","id","DocumentoTransporte")>>",
+      "Ficha": "<<LOOKUP("1","transporte","id","Ficha")>>",
+      "Placa": "<<LOOKUP("1","transporte","id","Placa")>>",
+      "RutaTransporte": "<<LOOKUP("1","transporte","id","RutaTransporte")>>",
+      "ZonaTransporte": "<<LOOKUP("1","transporte","id","ZonaTransporte")>>",
+      "NumeroAlbaran": "<<LOOKUP("1","transporte","id","NumeroAlbaran")>>"
+    },
+    "Totales": {
+      "MontoGravadoTotal": "<<[subTotal]>>",
+      "MontoGravadoI1": "<<[MontoGravadoI1]>>",
+      "MontoGravadoI2": "<<[MontoGravadoI2]>>",
+      "MontoGravadoI3": "<<[MontoGravadoI3]>>",
+      "MontoExento": "<<[MontoExento]>>",
+      "ITBIS1": "<<[ITBIS1]>>",
+      "ITBIS2": "<<[ITBIS2]>>",
+      "ITBIS3": "<<[ITBIS3]>>",
+      "TotalITBIS": "<<[calculoITBIS]>>",
+      "TotalITBIS1": "<<[TotalITBIS1]>>",
+      "TotalITBIS2": "<<[TotalITBIS2]>>",
+      "TotalITBIS3": "<<[TotalITBIS3]>>"
+     
+},
+    "OtraMoneda": {
+      "Moneda": "<<[moneda]>>",
+      "TipoCambio": "<<[moneda].[Tasa]>>",
+      "MontoGravadoTotalOtraMoneda": "<<[subTotal]/[moneda].[Tasa]>>",
+      "MontoGravado1OtraMoneda": "<<[MontoGravadoI1]/[moneda].[Tasa]>>>",
+      "MontoGravado2OtraMoneda": "<<[MontoGravadoI2]/[moneda].[Tasa]>>",
+      "MontoGravado3OtraMoneda": "<<[MontoGravadoI3]/[moneda].[Tasa]>>",
+      "MontoExentoOtraMoneda": "<<[MontoExento]/[moneda].[Tasa]>>",
+      "TotalITBISOtraMoneda": "<<[calculoITBIS]/[moneda].[Tasa]>>",
+      "TotalITBIS1OtraMoneda": "<<[TotalITBIS1]/[moneda].[Tasa]>>",
+      "TotalITBIS2OtraMoneda": "<<[TotalITBIS2]/[moneda].[Tasa]>>",
+      "TotalITBIS3OtraMoneda": "<<[TotalITBIS3]/[moneda].[Tasa]>>"
+    }
+  },
+  "DetallesItems": [
+  <<START:VentaDetalle>>
+  {
+    "NumeroLinea": "<<[_RowNumber]>>",
+    "TablaCodigosItem": [
+      {
+        "TipoCodigo": "01",
+        "CodigoItem": "<<[producto].[codigo]>>"
+      }
+    ],
+    "IndicadorFacturacion": "1",
+    "Retencion": {
+      "IndicadorAgenteRetencionoPercepcion": "<<[IndicadorAgenteRetencionoPercepcion]>>",
+      "MontoITBISRetenido": "<<[MontoITBISRetenido]>>",
+      "MontoISRRetenido": "<<[MontoISRRetenido]>>"
+    },
+    "NombreItem": "<<[producto].[nombre]>>",
+    "IndicadorBienoServicio": "<<[producto].[indicadorBienoServicio]>>",
+    "DescripcionItem": "<<[producto].[descripcion]>>",
+    "CantidadItem": "<<[cantidad]>>",
+    "UnidadMedida": "<<[unidadMedida]>>",
+    "CantidadReferencia": "<<[cantidadReferencia]>>",
+    "UnidadReferencia": "<<[unidadReferencia]>>",
+    "TablaSubcantidad": [
+      {
+        "Subcantidad": "<<[subcantidad]>>",
+        "CodigoSubcantidad": "<<[codigoSubcantidad]>>"
+      }
+    ],
+    "GradosAlcohol": "<<[gradosAlcohol]>>",
+    "PrecioUnitarioReferencia": "<<[precioReferencia]>>",
+    "FechaElaboracion": "<<[fechaElaboracion]>>",
+    "FechaVencimientoItem": "<<[fechaVencimientoItem]>>",
+    "PrecioUnitarioItem": "<<[precio]>>",
+    "DescuentoMonto": "<<[descuentoMonto]>>",
+    "TablaSubDescuento": [
+      {
+        "TipoSubDescuento": "<<[tipoSubDescuento]>>",
+        "SubDescuentoPorcentaje": "<<[subDescuentoPorcentaje]>>",
+        "MontoSubDescuento": "<<[montoSubDescuento]>>"
+      }
+    ],
+    "RecargoMonto": "<<[recargoMonto]>>",
+    "TablaSubRecargo": [
+      {
+        "TipoSubRecargo": "<<[tipoSubRecargo]>>",
+        "SubRecargoPorcentaje": "<<[subRecargoPorcentaje]>>",
+        "MontoSubRecargo": "<<[montoSubRecargo]>>"
+      }
+    ],
+    "TablaImpuestoAdicional": [
+      {
+        "TipoImpuesto": "<<[tipoImpuesto]>>",
+        "TasaImpuestoAdicional": "<<[valorITBIS]>>",
+        "MontoImpuestoSelectivoConsumoEspecifico": "<<[MontoImpuestoSelectivoConsumoEspecifico]>>",
+        "MontoImpuestoSelectivoConsumoAdvalorem": "<<[MontoImpuestoSelectivoConsumoAdvalorem]>>",
+        "OtrosImpuestosAdicionales": "<<[OtrosImpuestosAdicionales]>>"
+      }
+    ],
+    "OtraMonedaDetalle": {
+      "TipoMoneda": "<<[TipoMoneda]>>",
+      "TipoCambio": "<<[TipoCambio]>>",
+      "MontoGravadoTotalOtraMoneda": "<<[MontoGravadoTotalOtraMoneda]>>",
+      "MontoExentoOtraMoneda": "<<[MontoExentoOtraMoneda]>>",
+      "TotalITBISOtraMoneda": "<<[TotalITBISOtraMoneda]>>",
+      "MontoTotalOtraMoneda": "<<[MontoTotalOtraMoneda]>>"
+    },
+    "MontoItem": "<<[MontoItem]>>"
+  }
+  <<END>>
+],
+  "Subtotales": [
+  {
+    "NumeroSubTotal": "<<[NumeroSubTotal]>>",
+    "TipoSubTotal": "<<[TipoSubTotal]>>",
+    "DescripcionSubtotal": "<<[DescripcionSubtotal]>>",
+    "Orden": "<<[Orden]>>",
+    "SubTotalMontoGravadoTotal": "<<[SubTotalMontoGravadoTotal]>>",
+    "SubTotalMontoGravadoI1": "<<[SubTotalMontoGravadoI1]>>",
+    "SubTotalMontoGravadoI2": "<<[SubTotalMontoGravadoI2]>>",
+    "SubTotalMontoGravadoI3": "<<[SubTotalMontoGravadoI3]>>",
+    "SubTotalITBIS": "<<[SubTotalITBIS]>>",
+    "SubTotalITBIS1": "<<[SubTotalITBIS1]>>",
+    "SubTotalITBIS2": "<<[SubTotalITBIS2]>>",
+    "SubTotalITBIS3": "<<[SubTotalITBIS3]>>",
+    "SubTotalImpuestoAdicional": "<<[SubTotalImpuestoAdicional]>>",
+    "SubTotalExento": "<<[SubTotalExento]>>",
+    "MontoSubTotal": "<<[MontoSubTotal]>>",
+    "Lineas": "<<[Lineas]>>"
+  }
+],
+  "DescuentosORecargos": [
+  {
+    "NumeroLinea": "<<[NumeroLinea]>>",
+    "TipoAjuste": "<<[TipoAjuste]>>",
+    "IndicadorNorma1007": "<<[IndicadorNorma1007]>>",
+    "DescripcionDescuentooRecargo": "<<[DescripcionDescuentooRecargo]>>",
+    "TipoValor": "<<[TipoValor]>>",
+    "ValorDescuentooRecargo": "<<[ValorDescuentooRecargo]>>",
+    "MontoDescuentooRecargo": "<<[MontoDescuentooRecargo]>>",
+    "MontoDescuentooRecargoOtraMoneda": "<<[MontoDescuentooRecargoOtraMoneda]>>",
+    "IndicadorFacturacionDescuentooRecargo": "<<[IndicadorFacturacionDescuentooRecargo]>>"
+  }
+],
+  "Pagina": [
+    {
+      "PaginaNo": "<<[PaginaNo]>>",
+      "NoLineaDesde": "<<[NoLineaDesde]>>",
+      "NoLineaHasta": "<<[NoLineaHasta]>>",
+      "SubtotalMontoGravadoPagina": "<<[SubtotalMontoGravadoPagina]>>",
+      "SubtotalMontoGravado1Pagina": "<<[SubtotalMontoGravado1Pagina]>>",
+      "SubtotalMontoGravado2Pagina": "<<[SubtotalMontoGravado2Pagina]>>",
+      "SubtotalMontoGravado3Pagina": "<<[SubtotalMontoGravado3Pagina]>>",
+      "SubtotalExentoPagina": "<<[SubtotalExentoPagina]>>",
+      "SubtotalItbisPagina": "<<[SubtotalItbisPagina]>>",
+      "SubtotalItbis1Pagina": "<<[SubtotalItbis1Pagina]>>",
+      "SubtotalItbis2Pagina": "<<[SubtotalItbis2Pagina]>>",
+      "SubtotalItbis3Pagina": "<<[SubtotalItbis3Pagina]>>",
+      "SubtotalImpuestoAdicionalPagina": "<<[SubtotalImpuestoAdicionalPagina]>>",
+      "SubtotalImpuestoAdicional": {
+        "SubtotalImpuestoSelectivoConsumoEspecificoPagina": "<<[SubtotalImpuestoSelectivoConsumoEspecificoPagina]>>",
+        "SubtotalOtrosImpuesto": "<<[SubtotalOtrosImpuesto]>>"
+      },
+      "MontoSubtotalPagina": "<<[MontoSubtotalPagina]>>",
+      "SubtotalMontoNoFacturablePagina": "<<[SubtotalMontoNoFacturablePagina]>>"
+    }
+  ],
+  "InformacionReferencia": {
+    "NCFModificado": "<<[NCFModificado]>>",
+    "RNCOtroContribuyente": "<<[RNCOtroContribuyente]>>",
+    "FechaNCFModificado": "<<[FechaNCFModificado]>>",
+    "CodigoModificacion": "<<[CodigoModificacion]>>"
+  },
+}

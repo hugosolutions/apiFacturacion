@@ -2,11 +2,13 @@ const express = require("express");
 const router = express.Router();
 const { crearFactura } = require("../utils/generarFactura"); // importa la función
 
+
 router.post("/", async (req, res) => {
   try {
     const datosFactura = req.body;
 
     const xml = crearFactura(datosFactura);
+    // const xml = datosFactura;
 
     // Puedes guardar el XML o retornarlo directamente
     res.json({
@@ -24,4 +26,5 @@ router.post("/", async (req, res) => {
   }
 });
 
-module.exports = router;
+
+
