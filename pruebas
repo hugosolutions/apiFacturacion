@@ -2,27 +2,27 @@
 <ECF>
   
 <Encabezado>
-  <IdDoc>
-     <TipoeCF>01</TipoeCF>
-     <eNCF>B0100000817</eNCF>
-     <FechaVencimientoSecuencia>31-12-2026</FechaVencimientoSecuencia>
-     <IndicadorEnvioDiferido>0</IndicadorEnvioDiferido>
-     <IndicadorMontoGravado>0</IndicadorMontoGravado>
-     <TipoIngresos>6</TipoIngresos>
-     <TipoPago>1</TipoPago>
-     <TablaFormasPago>
-       <FormaDePago>
-         <FormaPago>1</FormaPago>
-         <MontoPago>100</MontoPago>
-       </FormaDePago>
-     </TablaFormasPago>
-     <TipoCuentaPago>AH</TipoCuentaPago>
-     <NumeroCuentaPago>3500229593</NumeroCuentaPago>
-     <BancoPago>Banreservas</BancoPago>
-     <FechaDesde>30-10-2025</FechaDesde>
-     <FechaHasta>24-12-2025</FechaHasta>
-     <TotalPaginas>1</TotalPaginas>
-   </IdDoc>
+      <IdDoc>
+             <TipoeCF>01</TipoeCF>
+             <eNCF>B0100000817</eNCF>
+             <FechaVencimientoSecuencia>31-12-2026</FechaVencimientoSecuencia>
+             <IndicadorEnvioDiferido>0</IndicadorEnvioDiferido>
+             <IndicadorMontoGravado>0</IndicadorMontoGravado>
+             <TipoIngresos>6</TipoIngresos>
+             <TipoPago>1</TipoPago>
+             <TablaFormasPago>
+        <FormaDePago>
+          <FormaPago>1</FormaPago>
+          <MontoPago>100</MontoPago>
+        </FormaDePago>
+             </TablaFormasPago>
+             <TipoCuentaPago>AH</TipoCuentaPago>
+             <NumeroCuentaPago>3500229593</NumeroCuentaPago>
+             <BancoPago>Banreservas</BancoPago>
+             <FechaDesde>30-10-2025</FechaDesde>
+             <FechaHasta>24-12-2025</FechaHasta>
+             <TotalPaginas>1</TotalPaginas>
+    </IdDoc>
   
 <Emisor>
   
