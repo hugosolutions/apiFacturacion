@@ -2,37 +2,39 @@ const { create } = require("xmlbuilder2");
 // Función para IdDoc
 
 function crearIdDoc(idDoc) {
-  const parts = [];
+  return `
+<IdDoc>
+  ${idDoc.TipoeCF ? `<TipoeCF>${idDoc.TipoeCF}</TipoeCF>` : ""}
+  ${idDoc.eNCF ? `<eNCF>${idDoc.eNCF}</eNCF>` : ""}
+  ${idDoc.FechaVencimientoSecuencia ? `<FechaVencimientoSecuencia>${idDoc.FechaVencimientoSecuencia}</FechaVencimientoSecuencia>` : ""}
+  ${idDoc.IndicadorEnvioDiferido ? `<IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>` : ""}
+  ${idDoc.IndicadorMontoGravado ? `<IndicadorMontoGravado>${idDoc.IndicadorMontoGravado}</IndicadorMontoGravado>` : ""}
+  ${idDoc.IndicadorServicioTodoIncluido ? `<IndicadorServicioTodoIncluido>${idDoc.IndicadorServicioTodoIncluido}</IndicadorServicioTodoIncluido>` : ""}
+  ${idDoc.TipoIngresos ? `<TipoIngresos>${idDoc.TipoIngresos}</TipoIngresos>` : ""}
+  ${idDoc.TipoPago ? `<TipoPago>${idDoc.TipoPago}</TipoPago>` : ""}
+  ${idDoc.FechaLimitePago ? `<FechaLimitePago>${idDoc.FechaLimitePago}</FechaLimitePago>` : ""}
+  ${idDoc.TerminoPago ? `<TerminoPago>${idDoc.TerminoPago}</TerminoPago>` : ""}
 
-  if (idDoc.TipoeCF) parts.push(`<TipoeCF>${idDoc.TipoeCF}</TipoeCF>`);
-  if (idDoc.eNCF) parts.push(`<eNCF>${idDoc.eNCF}</eNCF>`);
-  if (idDoc.FechaVencimientoSecuencia) parts.push(`<FechaVencimientoSecuencia>${idDoc.FechaVencimientoSecuencia}</FechaVencimientoSecuencia>`);
-  if (idDoc.IndicadorEnvioDiferido) parts.push(`<IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>`);
-  if (idDoc.IndicadorMontoGravado) parts.push(`<IndicadorMontoGravado>${idDoc.IndicadorMontoGravado}</IndicadorMontoGravado>`);
-  if (idDoc.IndicadorServicioTodoIncluido) parts.push(`<IndicadorServicioTodoIncluido>${idDoc.IndicadorServicioTodoIncluido}</IndicadorServicioTodoIncluido>`);
-  if (idDoc.TipoIngresos) parts.push(`<TipoIngresos>${idDoc.TipoIngresos}</TipoIngresos>`);
-  if (idDoc.TipoPago) parts.push(`<TipoPago>${idDoc.TipoPago}</TipoPago>`);
-  if (idDoc.FechaLimitePago) parts.push(`<FechaLimitePago>${idDoc.FechaLimitePago}</FechaLimitePago>`);
-  if (idDoc.TerminoPago) parts.push(`<TerminoPago>${idDoc.TerminoPago}</TerminoPago>`);
-
-  // TablaFormasPago
-  if (idDoc.TablaFormasPago && idDoc.TablaFormasPago.length) {
-    const formas = idDoc.TablaFormasPago.map(fp =>
-      `<FormaDePago>${fp.FormaPago ? `<FormaPago>${fp.FormaPago}</FormaPago>` : ""}${fp.MontoPago ? `<MontoPago>${fp.MontoPago}</MontoPago>` : ""}</FormaDePago>`
-    ).join("");
-    parts.push(`<TablaFormasPago>${formas}</TablaFormasPago>`);
+  ${
+    idDoc.TablaFormasPago && idDoc.TablaFormasPago.length
+      ? `<TablaFormasPago>
+    ${idDoc.TablaFormasPago.map(fp => `
+      <FormaDePago>
+        ${fp.FormaPago ? `<FormaPago>${fp.FormaPago}</FormaPago>` : ""}
+        ${fp.MontoPago ? `<MontoPago>${fp.MontoPago}</MontoPago>` : ""}
+      </FormaDePago>`).join("")}
+    </TablaFormasPago>`
+      : ""
   }
 
-  if (idDoc.TipoCuentaPago) parts.push(`<TipoCuentaPago>${idDoc.TipoCuentaPago}</TipoCuentaPago>`);
-  if (idDoc.NumeroCuentaPago) parts.push(`<NumeroCuentaPago>${idDoc.NumeroCuentaPago}</NumeroCuentaPago>`);
-  if (idDoc.BancoPago) parts.push(`<BancoPago>${idDoc.BancoPago}</BancoPago>`);
-  if (idDoc.FechaDesde) parts.push(`<FechaDesde>${idDoc.FechaDesde}</FechaDesde>`);
-  if (idDoc.FechaHasta) parts.push(`<FechaHasta>${idDoc.FechaHasta}</FechaHasta>`);
-  if (idDoc.TotalPaginas) parts.push(`<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
-
-  return `<IdDoc>${parts.join("")}</IdDoc>`;
+  ${idDoc.TipoCuentaPago ? `<TipoCuentaPago>${idDoc.TipoCuentaPago}</TipoCuentaPago>` : ""}
+  ${idDoc.NumeroCuentaPago ? `<NumeroCuentaPago>${idDoc.NumeroCuentaPago}</NumeroCuentaPago>` : ""}
+  ${idDoc.BancoPago ? `<BancoPago>${idDoc.BancoPago}</BancoPago>` : ""}
+  ${idDoc.FechaDesde ? `<FechaDesde>${idDoc.FechaDesde}</FechaDesde>` : ""}
+  ${idDoc.FechaHasta ? `<FechaHasta>${idDoc.FechaHasta}</FechaHasta>` : ""}
+  ${idDoc.TotalPaginas ? `<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>` : ""}
+</IdDoc>`;
 }
-
 
 
 
