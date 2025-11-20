@@ -817,22 +817,22 @@ function crearFactura(datosFactura) {
     xml += `  ${crearEncabezado(datosFactura.Encabezado)}\n`;
 
   if (datosFactura.DetallesItems && datosFactura.DetallesItems.length)
-    xml += `  ${crearDetallesItems(datosFactura.DetallesItems)}\n`;
+    xml += `${crearDetallesItems(datosFactura.DetallesItems)}\n`;
 
   if (datosFactura.Subtotales && datosFactura.Subtotales.length)
-    xml += `  ${crearSubtotales(datosFactura.Subtotales)}\n`;
+    xml += `${crearSubtotales(datosFactura.Subtotales)}\n`;
 
   if (datosFactura.DescuentosORecargos && datosFactura.DescuentosORecargos.length)
-    xml += `  ${crearDescuentosORecargos(datosFactura.DescuentosORecargos)}\n`;
+    xml += `${crearDescuentosORecargos(datosFactura.DescuentosORecargos)}\n`;
 
   if (datosFactura.Paginacion && Object.keys(datosFactura.Paginacion).length)
-    xml += `  ${crearPaginacion(datosFactura.Paginacion)}\n`;
+    xml += `${crearPaginacion(datosFactura.Paginacion)}\n`;
 
   if (datosFactura.InformacionReferencia && Object.keys(datosFactura.InformacionReferencia).length)
-    xml += `  ${crearInformacionReferencia(datosFactura.InformacionReferencia)}\n`;
+    xml += `${crearInformacionReferencia(datosFactura.InformacionReferencia)}\n`;
 
   if (datosFactura.Firma && Object.keys(datosFactura.Firma).length)
-    xml += `  ${crearFirma(datosFactura.Firma)}\n`;
+    xml += `${crearFirma(datosFactura.Firma)}\n`;
 
   xml += `</ECF>`;
   return xml;
