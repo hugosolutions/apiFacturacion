@@ -1,14 +1,16 @@
 const { create } = require("xmlbuilder2");
 // Función para IdDoc
 
+const INDENT_0 = "";
+const INDENT_1 = "   ";       // 2 espacios
+const INDENT_2 = "     ";     // 4 espacios
+const INDENT_3 = "       ";   // 6 espacios
+const INDENT_4 = "         "; // 8 espacios
+
 function crearIdDoc(idDoc) {
   const lines = [];
 
-  const INDENT_0 = "";
-  const INDENT_1 = "  ";       // 2 espacios
-  const INDENT_2 = "    ";     // 4 espacios
-  const INDENT_3 = "      ";   // 6 espacios
-  const INDENT_4 = "        "; // 8 espacios
+  
 
   lines.push(`<IdDoc>`);
 
