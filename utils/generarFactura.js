@@ -45,7 +45,7 @@ function crearIdDoc(idDoc) {
   if (idDoc.FechaHasta) lines.push(`${INDENT_aux6}<FechaHasta>${idDoc.FechaHasta}</FechaHasta>`);
   if (idDoc.TotalPaginas) lines.push(`${INDENT_aux6}<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
 
-  lines.push(`${INDENT_1}</IdDoc>`);
+  lines.push(`${INDENT_aux4}</IdDoc>`);
 
   return lines.join("\n");
 }
