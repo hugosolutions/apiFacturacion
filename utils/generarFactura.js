@@ -3,8 +3,8 @@ const { create } = require("xmlbuilder2");
 
 const INDENT_aux1 = " "; // 1 espacio
 const INDENT_aux2 = "  "; // 2 espacio
-const INDENT_aux4 = "     "; // 4 espacio
-const INDENT_aux6 = "       "; // 6 espacio
+const INDENT_aux4 = "    "; // 4 espacio
+const INDENT_aux6 = "      "; // 6 espacio
 const INDENT_aux8 = "        "; // 8 espacio
 const INDENT_aux10 = "          "; // 10 espacio
 
