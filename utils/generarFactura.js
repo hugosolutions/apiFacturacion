@@ -367,7 +367,7 @@ function crearOtraMoneda(moneda) {
 function crearEncabezado(datos) {
   return `
 <Encabezado>
-  ${crearIdDoc(datos.IdDoc)}
+${crearIdDoc(datos.IdDoc)}
   ${crearEmisor(datos.Emisor)}
   ${crearComprador(datos.Comprador)}
   ${crearInformacionesAdicionales(datos.InformacionesAdicionales)}
