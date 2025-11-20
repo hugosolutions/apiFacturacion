@@ -1,47 +1,48 @@
 const { create } = require("xmlbuilder2");
 // Función para IdDoc
 
-const INDENT_0 = "";
-const INDENT_1 = "   ";       // 2 espacios
-const INDENT_2 = "     ";     // 4 espacios
-const INDENT_3 = "       ";   // 6 espacios
-const INDENT_4 = "         "; // 8 espacios
+const INDENT_aux1 = " "; // 1 espacio
+const INDENT_aux2 = "  "; // 2 espacio
+const INDENT_aux4 = "    "; // 4 espacio
+const INDENT_aux6 = "      "; // 6 espacio
+const INDENT_aux8 = "        "; // 8 espacio
+const INDENT_aux10 = "          "; // 10 espacio
 
 function crearIdDoc(idDoc) {
   const lines = [];
 
   
 
-  lines.push(`<IdDoc>`);
+  lines.push(`${INDENT_aux4}<IdDoc>`);
 
-  if (idDoc.TipoeCF) lines.push(`${INDENT_2}<TipoeCF>${idDoc.TipoeCF}</TipoeCF>`);
-  if (idDoc.eNCF) lines.push(`${INDENT_2}<eNCF>${idDoc.eNCF}</eNCF>`);
-  if (idDoc.FechaVencimientoSecuencia) lines.push(`${INDENT_2}<FechaVencimientoSecuencia>${idDoc.FechaVencimientoSecuencia}</FechaVencimientoSecuencia>`);
-  if (idDoc.IndicadorEnvioDiferido) lines.push(`${INDENT_2}<IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>`);
-  if (idDoc.IndicadorMontoGravado) lines.push(`${INDENT_2}<IndicadorMontoGravado>${idDoc.IndicadorMontoGravado}</IndicadorMontoGravado>`);
-  if (idDoc.IndicadorServicioTodoIncluido) lines.push(`${INDENT_2}<IndicadorServicioTodoIncluido>${idDoc.IndicadorServicioTodoIncluido}</IndicadorServicioTodoIncluido>`);
-  if (idDoc.TipoIngresos) lines.push(`${INDENT_2}<TipoIngresos>${idDoc.TipoIngresos}</TipoIngresos>`);
-  if (idDoc.TipoPago) lines.push(`${INDENT_2}<TipoPago>${idDoc.TipoPago}</TipoPago>`);
-  if (idDoc.TerminoPago) lines.push(`${INDENT_2}<TerminoPago>${idDoc.TerminoPago}</TerminoPago>`);
+  if (idDoc.TipoeCF) lines.push(`${INDENT_aux6}<TipoeCF>${idDoc.TipoeCF}</TipoeCF>`);
+  if (idDoc.eNCF) lines.push(`${INDENT_aux6}<eNCF>${idDoc.eNCF}</eNCF>`);
+  if (idDoc.FechaVencimientoSecuencia) lines.push(`${INDENT_aux6}<FechaVencimientoSecuencia>${idDoc.FechaVencimientoSecuencia}</FechaVencimientoSecuencia>`);
+  if (idDoc.IndicadorEnvioDiferido) lines.push(`${INDENT_aux6}<IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>`);
+  if (idDoc.IndicadorMontoGravado) lines.push(`${INDENT_aux6}<IndicadorMontoGravado>${idDoc.IndicadorMontoGravado}</IndicadorMontoGravado>`);
+  if (idDoc.IndicadorServicioTodoIncluido) lines.push(`${INDENT_aux6}<IndicadorServicioTodoIncluido>${idDoc.IndicadorServicioTodoIncluido}</IndicadorServicioTodoIncluido>`);
+  if (idDoc.TipoIngresos) lines.push(`${INDENT_aux6}<TipoIngresos>${idDoc.TipoIngresos}</TipoIngresos>`);
+  if (idDoc.TipoPago) lines.push(`${INDENT_aux6}<TipoPago>${idDoc.TipoPago}</TipoPago>`);
+  if (idDoc.TerminoPago) lines.push(`${INDENT_aux6}<TerminoPago>${idDoc.TerminoPago}</TerminoPago>`);
 
   // TablaFormasPago
   if (idDoc.TablaFormasPago && idDoc.TablaFormasPago.length > 0) {
-    lines.push(`${INDENT_2}<TablaFormasPago>`);
+    lines.push(`${INDENT_aux6}<TablaFormasPago>`);
     idDoc.TablaFormasPago.forEach(fp => {
-      lines.push(`${INDENT_3}<FormaDePago>`);
-      if (fp.FormaPago) lines.push(`${INDENT_4}<FormaPago>${fp.FormaPago}</FormaPago>`);
-      if (fp.MontoPago) lines.push(`${INDENT_4}<MontoPago>${fp.MontoPago}</MontoPago>`);
-      lines.push(`${INDENT_3}</FormaDePago>`);
+      lines.push(`${INDENT_aux8}<FormaDePago>`);
+      if (fp.FormaPago) lines.push(`${INDENT_aux10}<FormaPago>${fp.FormaPago}</FormaPago>`);
+      if (fp.MontoPago) lines.push(`${INDENT_aux10}<MontoPago>${fp.MontoPago}</MontoPago>`);
+      lines.push(`${INDENT_aux8}</FormaDePago>`);
     });
-    lines.push(`${INDENT_2}</TablaFormasPago>`);
+    lines.push(`${INDENT_aux6}</TablaFormasPago>`);
   }
 
-  if (idDoc.TipoCuentaPago) lines.push(`${INDENT_2}<TipoCuentaPago>${idDoc.TipoCuentaPago}</TipoCuentaPago>`);
-  if (idDoc.NumeroCuentaPago) lines.push(`${INDENT_2}<NumeroCuentaPago>${idDoc.NumeroCuentaPago}</NumeroCuentaPago>`);
-  if (idDoc.BancoPago) lines.push(`${INDENT_2}<BancoPago>${idDoc.BancoPago}</BancoPago>`);
-  if (idDoc.FechaDesde) lines.push(`${INDENT_2}<FechaDesde>${idDoc.FechaDesde}</FechaDesde>`);
-  if (idDoc.FechaHasta) lines.push(`${INDENT_2}<FechaHasta>${idDoc.FechaHasta}</FechaHasta>`);
-  if (idDoc.TotalPaginas) lines.push(`${INDENT_2}<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
+  if (idDoc.TipoCuentaPago) lines.push(`${INDENT_aux6}<TipoCuentaPago>${idDoc.TipoCuentaPago}</TipoCuentaPago>`);
+  if (idDoc.NumeroCuentaPago) lines.push(`${INDENT_aux6}<NumeroCuentaPago>${idDoc.NumeroCuentaPago}</NumeroCuentaPago>`);
+  if (idDoc.BancoPago) lines.push(`${INDENT_aux6}<BancoPago>${idDoc.BancoPago}</BancoPago>`);
+  if (idDoc.FechaDesde) lines.push(`${INDENT_aux6}<FechaDesde>${idDoc.FechaDesde}</FechaDesde>`);
+  if (idDoc.FechaHasta) lines.push(`${INDENT_aux6}<FechaHasta>${idDoc.FechaHasta}</FechaHasta>`);
+  if (idDoc.TotalPaginas) lines.push(`${INDENT_aux6}<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
 
   lines.push(`${INDENT_1}</IdDoc>`);
 
