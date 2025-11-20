@@ -10,7 +10,7 @@ function crearIdDoc(idDoc) {
   const INDENT_3 = "      ";   // 6 espacios
   const INDENT_4 = "        "; // 8 espacios
 
-  lines.push(`${INDENT_1}<IdDoc>`);
+  lines.push(`$<IdDoc>`);
 
   if (idDoc.TipoeCF) lines.push(`${INDENT_2}<TipoeCF>${idDoc.TipoeCF}</TipoeCF>`);
   if (idDoc.eNCF) lines.push(`${INDENT_2}<eNCF>${idDoc.eNCF}</eNCF>`);

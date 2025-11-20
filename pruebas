@@ -2,7 +2,7 @@
 <ECF>
   
 <Encabezado>
-  <IdDoc>
+    <IdDoc>
     <TipoeCF>01</TipoeCF>
     <eNCF>B0100000817</eNCF>
     <FechaVencimientoSecuencia>31-12-2026</FechaVencimientoSecuencia>
@@ -10,7 +10,6 @@
     <IndicadorMontoGravado>0</IndicadorMontoGravado>
     <TipoIngresos>6</TipoIngresos>
     <TipoPago>1</TipoPago>
-    <TerminoPago>72 Horas</TerminoPago>
     <TablaFormasPago>
       <FormaDePago>
         <FormaPago>1</FormaPago>
