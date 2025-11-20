@@ -2,7 +2,7 @@
 <ECF>
   
 <Encabezado>
-    <IdDoc>
+  $<IdDoc>
     <TipoeCF>01</TipoeCF>
     <eNCF>B0100000817</eNCF>
     <FechaVencimientoSecuencia>31-12-2026</FechaVencimientoSecuencia>
