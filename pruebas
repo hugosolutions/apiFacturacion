@@ -1,35 +1,8 @@
-  "<?xml version=""1.0"" encoding=""UTF-8""?>
+"<?xml version=""1.0"" encoding=""UTF-8""?>
 <ECF>
   
 <Encabezado>
-  
-<IdDoc>
-  <TipoeCF>01</TipoeCF>
-  <eNCF>B0100000817</eNCF>
-  <FechaVencimientoSecuencia>31-12-aaaa</FechaVencimientoSecuencia>
-  <IndicadorEnvioDiferido>0</IndicadorEnvioDiferido>
-  <IndicadorMontoGravado>0</IndicadorMontoGravado>
-  
-  <TipoIngresos>6</TipoIngresos>
-  <TipoPago>1</TipoPago>
-  
-  
-
-  <TablaFormasPago>
-    
-      <FormaDePago>
-        <FormaPago>1</FormaPago>
-        <MontoPago>100</MontoPago>
-      </FormaDePago>
-    </TablaFormasPago>
-
-  
-  <NumeroCuentaPago>3,500,229,593</NumeroCuentaPago>
-  
-  
-  
-  <TotalPaginas>1</TotalPaginas>
-</IdDoc>
+  <IdDoc><TipoeCF>01</TipoeCF><eNCF>B0100000817</eNCF><FechaVencimientoSecuencia>31-12-aaaa</FechaVencimientoSecuencia><IndicadorEnvioDiferido>0</IndicadorEnvioDiferido><IndicadorMontoGravado>0</IndicadorMontoGravado><TipoIngresos>6</TipoIngresos><TipoPago>1</TipoPago><TablaFormasPago><FormaDePago><FormaPago>1</FormaPago><MontoPago>100</MontoPago></FormaDePago></TablaFormasPago><NumeroCuentaPago>3,500,229,593</NumeroCuentaPago><TotalPaginas>1</TotalPaginas></IdDoc>
   
 <Emisor>
   
@@ -62,11 +35,11 @@
   <DireccionComprador>Satiago</DireccionComprador>
   
   
-  <FechaEntrega>19- 11-AAAA</FechaEntrega>
+  <FechaEntrega>19-11-2025</FechaEntrega>
   <ContactoEntrega>8095707273</ContactoEntrega>
   <DireccionEntrega>Satiago</DireccionEntrega>
   <TelefonoAdicional>8095707273</TelefonoAdicional>
-  <FechaOrdenCompra>19- 11-AAAA</FechaOrdenCompra>
+  <FechaOrdenCompra>19-11-2025</FechaOrdenCompra>
   <NumeroOrdenCompra>192</NumeroOrdenCompra>
   <CodigoInternoComprador>f5d0cc3f</CodigoInternoComprador>
   
