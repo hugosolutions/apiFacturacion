@@ -4,43 +4,48 @@ const { create } = require("xmlbuilder2");
 function crearIdDoc(idDoc) {
   const lines = [];
 
-  lines.push("<IdDoc>");
+  const INDENT_0 = "";
+  const INDENT_1 = "  ";       // 2 espacios
+  const INDENT_2 = "    ";     // 4 espacios
+  const INDENT_3 = "      ";   // 6 espacios
+  const INDENT_4 = "        "; // 8 espacios
 
-  if (idDoc.TipoeCF) lines.push(`  <TipoeCF>${idDoc.TipoeCF}</TipoeCF>`);
-  if (idDoc.eNCF) lines.push(`  <eNCF>${idDoc.eNCF}</eNCF>`);
-  if (idDoc.FechaVencimientoSecuencia) lines.push(`  <FechaVencimientoSecuencia>${idDoc.FechaVencimientoSecuencia}</FechaVencimientoSecuencia>`);
-  if (idDoc.IndicadorEnvioDiferido) lines.push(`  <IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>`);
-  if (idDoc.IndicadorMontoGravado) lines.push(`  <IndicadorMontoGravado>${idDoc.IndicadorMontoGravado}</IndicadorMontoGravado>`);
-  if (idDoc.IndicadorServicioTodoIncluido) lines.push(`  <IndicadorServicioTodoIncluido>${idDoc.IndicadorServicioTodoIncluido}</IndicadorServicioTodoIncluido>`);
-  if (idDoc.TipoIngresos) lines.push(`  <TipoIngresos>${idDoc.TipoIngresos}</TipoIngresos>`);
-  if (idDoc.TipoPago) lines.push(`  <TipoPago>${idDoc.TipoPago}</TipoPago>`);
-  if (idDoc.FechaLimitePago) lines.push(`  <FechaLimitePago>${idDoc.FechaLimitePago}</FechaLimitePago>`);
-  if (idDoc.TerminoPago) lines.push(`  <TerminoPago>${idDoc.TerminoPago}</TerminoPago>`);
+  lines.push(`${INDENT_1}<IdDoc>`);
+
+  if (idDoc.TipoeCF) lines.push(`${INDENT_2}<TipoeCF>${idDoc.TipoeCF}</TipoeCF>`);
+  if (idDoc.eNCF) lines.push(`${INDENT_2}<eNCF>${idDoc.eNCF}</eNCF>`);
+  if (idDoc.FechaVencimientoSecuencia) lines.push(`${INDENT_2}<FechaVencimientoSecuencia>${idDoc.FechaVencimientoSecuencia}</FechaVencimientoSecuencia>`);
+  if (idDoc.IndicadorEnvioDiferido) lines.push(`${INDENT_2}<IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>`);
+  if (idDoc.IndicadorMontoGravado) lines.push(`${INDENT_2}<IndicadorMontoGravado>${idDoc.IndicadorMontoGravado}</IndicadorMontoGravado>`);
+  if (idDoc.IndicadorServicioTodoIncluido) lines.push(`${INDENT_2}<IndicadorServicioTodoIncluido>${idDoc.IndicadorServicioTodoIncluido}</IndicadorServicioTodoIncluido>`);
+  if (idDoc.TipoIngresos) lines.push(`${INDENT_2}<TipoIngresos>${idDoc.TipoIngresos}</TipoIngresos>`);
+  if (idDoc.TipoPago) lines.push(`${INDENT_2}<TipoPago>${idDoc.TipoPago}</TipoPago>`);
+  if (idDoc.TerminoPago) lines.push(`${INDENT_2}<TerminoPago>${idDoc.TerminoPago}</TerminoPago>`);
 
   // TablaFormasPago
   if (idDoc.TablaFormasPago && idDoc.TablaFormasPago.length > 0) {
-    lines.push(`  <TablaFormasPago>`);
+    lines.push(`${INDENT_2}<TablaFormasPago>`);
     idDoc.TablaFormasPago.forEach(fp => {
-      lines.push(`    <FormaDePago>`);
-      if (fp.FormaPago) lines.push(`      <FormaPago>${fp.FormaPago}</FormaPago>`);
-      if (fp.MontoPago) lines.push(`      <MontoPago>${fp.MontoPago}</MontoPago>`);
-      lines.push(`    </FormaDePago>`);
+      lines.push(`${INDENT_3}<FormaDePago>`);
+      if (fp.FormaPago) lines.push(`${INDENT_4}<FormaPago>${fp.FormaPago}</FormaPago>`);
+      if (fp.MontoPago) lines.push(`${INDENT_4}<MontoPago>${fp.MontoPago}</MontoPago>`);
+      lines.push(`${INDENT_3}</FormaDePago>`);
     });
-    lines.push(`  </TablaFormasPago>`);
+    lines.push(`${INDENT_2}</TablaFormasPago>`);
   }
 
-  if (idDoc.TipoCuentaPago) lines.push(`  <TipoCuentaPago>${idDoc.TipoCuentaPago}</TipoCuentaPago>`);
-  if (idDoc.NumeroCuentaPago) lines.push(`  <NumeroCuentaPago>${idDoc.NumeroCuentaPago}</NumeroCuentaPago>`);
-  if (idDoc.BancoPago) lines.push(`  <BancoPago>${idDoc.BancoPago}</BancoPago>`);
-  if (idDoc.FechaDesde) lines.push(`  <FechaDesde>${idDoc.FechaDesde}</FechaDesde>`);
-  if (idDoc.FechaHasta) lines.push(`  <FechaHasta>${idDoc.FechaHasta}</FechaHasta>`);
-  if (idDoc.TotalPaginas) lines.push(`  <TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
+  if (idDoc.TipoCuentaPago) lines.push(`${INDENT_2}<TipoCuentaPago>${idDoc.TipoCuentaPago}</TipoCuentaPago>`);
+  if (idDoc.NumeroCuentaPago) lines.push(`${INDENT_2}<NumeroCuentaPago>${idDoc.NumeroCuentaPago}</NumeroCuentaPago>`);
+  if (idDoc.BancoPago) lines.push(`${INDENT_2}<BancoPago>${idDoc.BancoPago}</BancoPago>`);
+  if (idDoc.FechaDesde) lines.push(`${INDENT_2}<FechaDesde>${idDoc.FechaDesde}</FechaDesde>`);
+  if (idDoc.FechaHasta) lines.push(`${INDENT_2}<FechaHasta>${idDoc.FechaHasta}</FechaHasta>`);
+  if (idDoc.TotalPaginas) lines.push(`${INDENT_2}<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
 
-  lines.push("</IdDoc>");
+  lines.push(`${INDENT_1}</IdDoc>`);
 
-  // Junta todo con saltos de línea REALES
   return lines.join("\n");
 }
+
 
 
 
