@@ -453,120 +453,120 @@ ${crearOtraMoneda(datos.OtraMoneda)}
 function crearDetallesItems(items) {
   const lines = [];
 
-  lines.push(`${INDENT_aux4}<DetallesItems>`);
+  lines.push(`${INDENT_aux2}<DetallesItems>`);
 
   items.forEach(item => {
-    lines.push(`${INDENT_aux6}<Item>`);
-    lines.push(`${INDENT_aux8}<NumeroLinea>${item.NumeroLinea}</NumeroLinea>`);
+    lines.push(`${INDENT_aux4}<Item>`);
+    lines.push(`${INDENT_aux6}<NumeroLinea>${item.NumeroLinea}</NumeroLinea>`);
 
     // TablaCodigosItem
     if (item.TablaCodigosItem && item.TablaCodigosItem.length > 0) {
-      lines.push(`${INDENT_aux8}<TablaCodigosItem>`);
+      lines.push(`${INDENT_aux6}<TablaCodigosItem>`);
       item.TablaCodigosItem.forEach(c => {
-        lines.push(`${INDENT_aux10}<CodigosItem>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<TipoCodigo>${c.TipoCodigo}</TipoCodigo>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<CodigoItem>${c.CodigoItem}</CodigoItem>`);
-        lines.push(`${INDENT_aux10}</CodigosItem>`);
+        lines.push(`${INDENT_aux8}<CodigosItem>`);
+        lines.push(`${INDENT_aux10}<TipoCodigo>${c.TipoCodigo}</TipoCodigo>`);
+        lines.push(`${INDENT_aux10}<CodigoItem>${c.CodigoItem}</CodigoItem>`);
+        lines.push(`${INDENT_aux8}</CodigosItem>`);
       });
-      lines.push(`${INDENT_aux8}</TablaCodigosItem>`);
+      lines.push(`${INDENT_aux6}</TablaCodigosItem>`);
     }
 
     if (item.IndicadorFacturacion)
-      lines.push(`${INDENT_aux8}<IndicadorFacturacion>${item.IndicadorFacturacion}</IndicadorFacturacion>`);
+      lines.push(`${INDENT_aux6}<IndicadorFacturacion>${item.IndicadorFacturacion}</IndicadorFacturacion>`);
 
     // Retención
     if (item.Retencion) {
-      lines.push(`${INDENT_aux8}<Retencion>`);
+      lines.push(`${INDENT_aux6}<Retencion>`);
       if (item.Retencion.IndicadorAgenteRetencionoPercepcion)
-        lines.push(`${INDENT_aux10}<IndicadorAgenteRetencionoPercepcion>${item.Retencion.IndicadorAgenteRetencionoPercepcion}</IndicadorAgenteRetencionoPercepcion>`);
+        lines.push(`${INDENT_aux8}<IndicadorAgenteRetencionoPercepcion>${item.Retencion.IndicadorAgenteRetencionoPercepcion}</IndicadorAgenteRetencionoPercepcion>`);
       if (item.Retencion.MontoITBISRetenido)
-        lines.push(`${INDENT_aux10}<MontoITBISRetenido>${item.Retencion.MontoITBISRetenido}</MontoITBISRetenido>`);
+        lines.push(`${INDENT_aux8}<MontoITBISRetenido>${item.Retencion.MontoITBISRetenido}</MontoITBISRetenido>`);
       if (item.Retencion.MontoISRRetenido)
-        lines.push(`${INDENT_aux10}<MontoISRRetenido>${item.Retencion.MontoISRRetenido}</MontoISRRetenido>`);
-      lines.push(`${INDENT_aux8}</Retencion>`);
+        lines.push(`${INDENT_aux8}<MontoISRRetenido>${item.Retencion.MontoISRRetenido}</MontoISRRetenido>`);
+      lines.push(`${INDENT_aux6}</Retencion>`);
     }
 
-    if (item.NombreItem) lines.push(`${INDENT_aux8}<NombreItem>${item.NombreItem}</NombreItem>`);
-    if (item.IndicadorBienoServicio) lines.push(`${INDENT_aux8}<IndicadorBienoServicio>${item.IndicadorBienoServicio}</IndicadorBienoServicio>`);
-    if (item.DescripcionItem) lines.push(`${INDENT_aux8}<DescripcionItem>${item.DescripcionItem}</DescripcionItem>`);
-    if (item.CantidadItem) lines.push(`${INDENT_aux8}<CantidadItem>${item.CantidadItem}</CantidadItem>`);
-    if (item.UnidadMedida) lines.push(`${INDENT_aux8}<UnidadMedida>${item.UnidadMedida}</UnidadMedida>`);
-    if (item.CantidadReferencia) lines.push(`${INDENT_aux8}<CantidadReferencia>${item.CantidadReferencia}</CantidadReferencia>`);
-    if (item.UnidadReferencia) lines.push(`${INDENT_aux8}<UnidadReferencia>${item.UnidadReferencia}</UnidadReferencia>`);
+    if (item.NombreItem) lines.push(`${INDENT_aux6}<NombreItem>${item.NombreItem}</NombreItem>`);
+    if (item.IndicadorBienoServicio) lines.push(`${INDENT_aux6}<IndicadorBienoServicio>${item.IndicadorBienoServicio}</IndicadorBienoServicio>`);
+    if (item.DescripcionItem) lines.push(`${INDENT_aux6}<DescripcionItem>${item.DescripcionItem}</DescripcionItem>`);
+    if (item.CantidadItem) lines.push(`${INDENT_aux6}<CantidadItem>${item.CantidadItem}</CantidadItem>`);
+    if (item.UnidadMedida) lines.push(`${INDENT_aux6}<UnidadMedida>${item.UnidadMedida}</UnidadMedida>`);
+    if (item.CantidadReferencia) lines.push(`${INDENT_aux6}<CantidadReferencia>${item.CantidadReferencia}</CantidadReferencia>`);
+    if (item.UnidadReferencia) lines.push(`${INDENT_aux6}<UnidadReferencia>${item.UnidadReferencia}</UnidadReferencia>`);
 
     // TablaSubcantidad
     if (item.TablaSubcantidad && item.TablaSubcantidad.length > 0) {
-      lines.push(`${INDENT_aux8}<TablaSubcantidad>`);
+      lines.push(`${INDENT_aux6}<TablaSubcantidad>`);
       item.TablaSubcantidad.forEach(s => {
-        lines.push(`${INDENT_aux10}<SubcantidadItem>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<Subcantidad>${s.Subcantidad}</Subcantidad>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<CodigoSubcantidad>${s.CodigoSubcantidad}</CodigoSubcantidad>`);
-        lines.push(`${INDENT_aux10}</SubcantidadItem>`);
+        lines.push(`${INDENT_aux8}<SubcantidadItem>`);
+        lines.push(`${INDENT_aux8}<Subcantidad>${s.Subcantidad}</Subcantidad>`);
+        lines.push(`${INDENT_aux8}<CodigoSubcantidad>${s.CodigoSubcantidad}</CodigoSubcantidad>`);
+        lines.push(`${INDENT_aux8}</SubcantidadItem>`);
       });
-      lines.push(`${INDENT_aux8}</TablaSubcantidad>`);
+      lines.push(`${INDENT_aux6}</TablaSubcantidad>`);
     }
 
-    if (item.GradosAlcohol) lines.push(`${INDENT_aux8}<GradosAlcohol>${item.GradosAlcohol}</GradosAlcohol>`);
-    if (item.PrecioUnitarioReferencia) lines.push(`${INDENT_aux8}<PrecioUnitarioReferencia>${item.PrecioUnitarioReferencia}</PrecioUnitarioReferencia>`);
-    if (item.FechaElaboracion) lines.push(`${INDENT_aux8}<FechaElaboracion>${item.FechaElaboracion}</FechaElaboracion>`);
-    if (item.FechaVencimientoItem) lines.push(`${INDENT_aux8}<FechaVencimientoItem>${item.FechaVencimientoItem}</FechaVencimientoItem>`);
-    if (item.PrecioUnitarioItem) lines.push(`${INDENT_aux8}<PrecioUnitarioItem>${item.PrecioUnitarioItem}</PrecioUnitarioItem>`);
-    if (item.DescuentoMonto) lines.push(`${INDENT_aux8}<DescuentoMonto>${item.DescuentoMonto}</DescuentoMonto>`);
+    if (item.GradosAlcohol) lines.push(`${INDENT_aux6}<GradosAlcohol>${item.GradosAlcohol}</GradosAlcohol>`);
+    if (item.PrecioUnitarioReferencia) lines.push(`${INDENT_aux6}<PrecioUnitarioReferencia>${item.PrecioUnitarioReferencia}</PrecioUnitarioReferencia>`);
+    if (item.FechaElaboracion) lines.push(`${INDENT_aux6}<FechaElaboracion>${item.FechaElaboracion}</FechaElaboracion>`);
+    if (item.FechaVencimientoItem) lines.push(`${INDENT_aux6}<FechaVencimientoItem>${item.FechaVencimientoItem}</FechaVencimientoItem>`);
+    if (item.PrecioUnitarioItem) lines.push(`${INDENT_aux6}<PrecioUnitarioItem>${item.PrecioUnitarioItem}</PrecioUnitarioItem>`);
+    if (item.DescuentoMonto) lines.push(`${INDENT_aux6}<DescuentoMonto>${item.DescuentoMonto}</DescuentoMonto>`);
 
     // TablaSubDescuento
     if (item.TablaSubDescuento && item.TablaSubDescuento.length > 0) {
-      lines.push(`${INDENT_aux8}<TablaSubDescuento>`);
+      lines.push(`${INDENT_aux6}<TablaSubDescuento>`);
       item.TablaSubDescuento.forEach(d => {
-        lines.push(`${INDENT_aux10}<SubDescuento>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<TipoSubDescuento>${d.TipoSubDescuento}</TipoSubDescuento>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<SubDescuentoPorcentaje>${d.SubDescuentoPorcentaje}</SubDescuentoPorcentaje>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<MontoSubDescuento>${d.MontoSubDescuento}</MontoSubDescuento>`);
-        lines.push(`${INDENT_aux10}</SubDescuento>`);
+        lines.push(`${INDENT_aux8}<SubDescuento>`);
+        lines.push(`${INDENT_aux8}<TipoSubDescuento>${d.TipoSubDescuento}</TipoSubDescuento>`);
+        lines.push(`${INDENT_aux8}<SubDescuentoPorcentaje>${d.SubDescuentoPorcentaje}</SubDescuentoPorcentaje>`);
+        lines.push(`${INDENT_aux8}<MontoSubDescuento>${d.MontoSubDescuento}</MontoSubDescuento>`);
+        lines.push(`${INDENT_aux8}</SubDescuento>`);
       });
-      lines.push(`${INDENT_aux8}</TablaSubDescuento>`);
+      lines.push(`${INDENT_aux6}</TablaSubDescuento>`);
     }
 
-    if (item.RecargoMonto) lines.push(`${INDENT_aux8}<RecargoMonto>${item.RecargoMonto}</RecargoMonto>`);
+    if (item.RecargoMonto) lines.push(`${INDENT_aux6}<RecargoMonto>${item.RecargoMonto}</RecargoMonto>`);
 
     // TablaSubRecargo
     if (item.TablaSubRecargo && item.TablaSubRecargo.length > 0) {
-      lines.push(`${INDENT_aux8}<TablaSubRecargo>`);
+      lines.push(`${INDENT_aux6}<TablaSubRecargo>`);
       item.TablaSubRecargo.forEach(r => {
-        lines.push(`${INDENT_aux10}<SubRecargo>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<TipoSubRecargo>${r.TipoSubRecargo}</TipoSubRecargo>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<SubRecargoPorcentaje>${r.SubRecargoPorcentaje}</SubRecargoPorcentaje>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<MontoSubRecargo>${r.MontoSubRecargo}</MontoSubRecargo>`);
-        lines.push(`${INDENT_aux10}</SubRecargo>`);
+        lines.push(`${INDENT_aux8}<SubRecargo>`);
+        lines.push(`${INDENT_aux10}TipoSubRecargo>${r.TipoSubRecargo}</TipoSubRecargo>`);
+        lines.push(`${INDENT_aux10}<SubRecargoPorcentaje>${r.SubRecargoPorcentaje}</SubRecargoPorcentaje>`);
+        lines.push(`${INDENT_aux10}<MontoSubRecargo>${r.MontoSubRecargo}</MontoSubRecargo>`);
+        lines.push(`${INDENT_aux8}</SubRecargo>`);
       });
-      lines.push(`${INDENT_aux8}</TablaSubRecargo>`);
+      lines.push(`${INDENT_aux6}</TablaSubRecargo>`);
     }
 
     // TablaImpuestoAdicional
     if (item.TablaImpuestoAdicional && item.TablaImpuestoAdicional.length > 0) {
-      lines.push(`${INDENT_aux8}<TablaImpuestoAdicional>`);
+      lines.push(`${INDENT_aux6}<TablaImpuestoAdicional>`);
       item.TablaImpuestoAdicional.forEach(i => {
-        lines.push(`${INDENT_aux10}<ImpuestoAdicional>`);
-        lines.push(`${INDENT_aux10}${INDENT_aux2}<TipoImpuesto>${i.TipoImpuesto}</TipoImpuesto>`);
-        lines.push(`${INDENT_aux10}</ImpuestoAdicional>`);
+        lines.push(`${INDENT_aux8}<ImpuestoAdicional>`);
+        lines.push(`${INDENT_aux8}<TipoImpuesto>${i.TipoImpuesto}</TipoImpuesto>`);
+        lines.push(`${INDENT_aux8}</ImpuestoAdicional>`);
       });
-      lines.push(`${INDENT_aux8}</TablaImpuestoAdicional>`);
+      lines.push(`${INDENT_aux6}</TablaImpuestoAdicional>`);
     }
 
     // OtraMonedaDetalle
     if (item.OtraMonedaDetalle) {
-      lines.push(`${INDENT_aux8}<OtraMonedaDetalle>`);
+      lines.push(`${INDENT_aux6}<OtraMonedaDetalle>`);
       Object.entries(item.OtraMonedaDetalle).forEach(([k, v]) => {
-        lines.push(`${INDENT_aux10}<${k}>${v}</${k}>`);
+        lines.push(`${INDENT_aux8}<${k}>${v}</${k}>`);
       });
-      lines.push(`${INDENT_aux8}</OtraMonedaDetalle>`);
+      lines.push(`${INDENT_aux6}</OtraMonedaDetalle>`);
     }
 
-    if (item.MontoItem) lines.push(`${INDENT_aux8}<MontoItem>${item.MontoItem}</MontoItem>`);
+    if (item.MontoItem) lines.push(`${INDENT_aux6}<MontoItem>${item.MontoItem}</MontoItem>`);
 
-    lines.push(`${INDENT_aux6}</Item>`);
+    lines.push(`${INDENT_aux4}</Item>`);
   });
 
-  lines.push(`${INDENT_aux4}</DetallesItems>`);
+  lines.push(`${INDENT_aux2}</DetallesItems>`);
 
   return lines.join("\n");
 }
