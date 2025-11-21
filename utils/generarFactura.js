@@ -533,8 +533,8 @@ function crearDetallesItems(items) {
       lines.push(`${INDENT_aux6}<TablaSubRecargo>`);
       item.TablaSubRecargo.forEach(r => {
         lines.push(`${INDENT_aux8}<SubRecargo>`);
-        lines.push(`${INDENT_aux10}TipoSubRecargo>${r.TipoSubRecargo}</TipoSubRecargo>`);
-        lines.push(`${INDENT_aux10}<SubRecargoPorcentaje>${r.SubRecargoPorcentaje}</SubRecargoPorcentaje>`);
+        lines.push(`${INDENT_aux10}<TipoSubRecargo>${r.TipoSubRecargo}</TipoSubRecargo>`);
+        if (r.SubRecargoPorcentaje) lines.push(`${INDENT_aux10}<SubRecargoPorcentaje>${r.SubRecargoPorcentaje}</SubRecargoPorcentaje>`);
         lines.push(`${INDENT_aux10}<MontoSubRecargo>${r.MontoSubRecargo}</MontoSubRecargo>`);
         lines.push(`${INDENT_aux8}</SubRecargo>`);
       });
