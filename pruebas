@@ -1,4 +1,4 @@
-"<?xml version=""1.0"" encoding=""UTF-8""?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ECF>  
   <Encabezado>
     <IdDoc>
@@ -23,16 +23,16 @@
       <TotalPaginas>1</TotalPaginas>
     </IdDoc>
     <Emisor>
+      <RNCEmisor>131311164</RNCEmisor>
       <RazonSocialEmisor>Programar puneta</RazonSocialEmisor>
       <NombreComercial>Hugo Solutions</NombreComercial>
       <DireccionEmisor>La Sirena Bartolomé Colon</DireccionEmisor>
-      <Municipio>250,100</Municipio>
-      <Provincia>250,000</Provincia>
+      <Municipio>250100</Municipio>
+      <Provincia>250000</Provincia>
       <TablaTelefonoEmisor>
         <TelefonoEmisor></TelefonoEmisor>
         <TelefonoEmisor></TelefonoEmisor>
       </TablaTelefonoEmisor>
-      <WebSite>{""Url"":"""",""LinkText"":""""}</WebSite>
       <NumeroFacturaInterna>3448ccd1</NumeroFacturaInterna>
       <NumeroPedidoInterno>192</NumeroPedidoInterno>
       <FechaEmision>19- 11-AAAA</FechaEmision>
@@ -50,11 +50,30 @@
       <CodigoInternoComprador>f5d0cc3f</CodigoInternoComprador>
     </Comprador>
     <InformacionesAdicionales>
+      <FechaEmbarque>A</FechaEmbarque>
+      <NumeroEmbarque>A</NumeroEmbarque>
+      <NumeroContenedor>A</NumeroContenedor>
+      <NumeroReferencia>A</NumeroReferencia>
+      <PesoBruto>A</PesoBruto>
+      <PesoNeto>AS</PesoNeto>
+      <UnidadPesoBruto>A</UnidadPesoBruto>
+      <UnidadPesoNeto>A</UnidadPesoNeto>
+      <CantidadBulto>A</CantidadBulto>
+      <UnidadBulto>A</UnidadBulto>
+      <VolumenBulto>A</VolumenBulto>
+      <UnidadVolumen>A</UnidadVolumen>
     </InformacionesAdicionales>
     <Transporte>
+      <Conductor>A</Conductor>
+      <DocumentoTransporte>A</DocumentoTransporte>
+      <Ficha>A</Ficha>
+      <Placa>A</Placa>
+      <RutaTransporte>A</RutaTransporte>
+      <ZonaTransporte>A</ZonaTransporte>
+      <NumeroAlbaran>A</NumeroAlbaran>
     </Transporte>
     <Totales>
-      <MontoGravadoTotal>$135.59</MontoGravadoTotal>
+      <MontoGravadoTotal>559.32</MontoGravadoTotal>
       <MontoGravadoI1>0.00</MontoGravadoI1>
       <MontoGravadoI2>0.00</MontoGravadoI2>
       <MontoGravadoI3>0.00</MontoGravadoI3>
@@ -62,13 +81,13 @@
       <ITBIS1>18</ITBIS1>
       <ITBIS2>16</ITBIS2>
       <ITBIS3>0</ITBIS3>
-      <TotalITBIS>$24.41</TotalITBIS>
+      <TotalITBIS>$100.68</TotalITBIS>
       <TotalITBIS1>0.00</TotalITBIS1>
       <TotalITBIS2>0.00</TotalITBIS2>
       <TotalITBIS3>0.00</TotalITBIS3>
     </Totales>
     <OtraMoneda>
-      <MontoGravadoTotalOtraMoneda>$0.00</MontoGravadoTotalOtraMoneda>
+      <MontoGravadoTotalOtraMoneda>0.00</MontoGravadoTotalOtraMoneda>
       <MontoGravado1OtraMoneda>0.00</MontoGravado1OtraMoneda>
       <MontoGravado2OtraMoneda>0.00</MontoGravado2OtraMoneda>
       <MontoGravado3OtraMoneda>0.00</MontoGravado3OtraMoneda>
@@ -115,8 +134,7 @@
       </TablaSubDescuento>
       <TablaSubRecargo>
         <SubRecargo>
-          TipoSubRecargo>$</TipoSubRecargo>
-          <SubRecargoPorcentaje>undefined</SubRecargoPorcentaje>
+          <TipoSubRecargo>$</TipoSubRecargo>
           <MontoSubRecargo></MontoSubRecargo>
         </SubRecargo>
       </TablaSubRecargo>
@@ -135,5 +153,59 @@
       </OtraMonedaDetalle>
       <MontoItem>$160.00</MontoItem>
     </Item>
+    <Item>
+      <NumeroLinea>1478</NumeroLinea>
+      <TablaCodigosItem>
+        <CodigosItem>
+          <TipoCodigo>01</TipoCodigo>
+          <CodigoItem>e497c1b6</CodigoItem>
+        </CodigosItem>
+      </TablaCodigosItem>
+      <IndicadorFacturacion>1</IndicadorFacturacion>
+      <Retencion>
+        <MontoITBISRetenido>22.88</MontoITBISRetenido>
+        <MontoISRRetenido>17.37</MontoISRRetenido>
+      </Retencion>
+      <NombreItem>COMBO DE VASO</NombreItem>
+      <IndicadorBienoServicio>2</IndicadorBienoServicio>
+      <DescripcionItem>.</DescripcionItem>
+      <CantidadItem>2</CantidadItem>
+      <CantidadReferencia>2</CantidadReferencia>
+      <TablaSubcantidad>
+        <SubcantidadItem>
+        <Subcantidad>11/22/2025</Subcantidad>
+        <CodigoSubcantidad>11/22/2025</CodigoSubcantidad>
+        </SubcantidadItem>
+      </TablaSubcantidad>
+      <PrecioUnitarioReferencia>250.00</PrecioUnitarioReferencia>
+      <PrecioUnitarioItem>250.00</PrecioUnitarioItem>
+      <TablaSubDescuento>
+        <SubDescuento>
+        <TipoSubDescuento>$</TipoSubDescuento>
+        <SubDescuentoPorcentaje>0</SubDescuentoPorcentaje>
+        <MontoSubDescuento></MontoSubDescuento>
+        </SubDescuento>
+      </TablaSubDescuento>
+      <TablaSubRecargo>
+        <SubRecargo>
+          <TipoSubRecargo>$</TipoSubRecargo>
+          <MontoSubRecargo></MontoSubRecargo>
+        </SubRecargo>
+      </TablaSubRecargo>
+      <TablaImpuestoAdicional>
+        <ImpuestoAdicional>
+        <TipoImpuesto></TipoImpuesto>
+        </ImpuestoAdicional>
+      </TablaImpuestoAdicional>
+      <OtraMonedaDetalle>
+        <TipoMoneda>0</TipoMoneda>
+        <TipoCambio>0</TipoCambio>
+        <MontoGravadoTotalOtraMoneda>0</MontoGravadoTotalOtraMoneda>
+        <MontoExentoOtraMoneda>0</MontoExentoOtraMoneda>
+        <TotalITBISOtraMoneda>0</TotalITBISOtraMoneda>
+        <MontoTotalOtraMoneda>0</MontoTotalOtraMoneda>
+      </OtraMonedaDetalle>
+      <MontoItem>$500.00</MontoItem>
+    </Item>
   </DetallesItems>
-</ECF>"
+</ECF>

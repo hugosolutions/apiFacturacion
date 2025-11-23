@@ -1,16 +1,26 @@
 const { create } = require("xmlbuilder2");
 // Función para IdDoc
 
-const INDENT_aux1 = " "; // 1 espacio
-const INDENT_aux2 = "  "; // 2 espacio
-const INDENT_aux4 = "    "; // 4 espacio
-const INDENT_aux6 = "      "; // 6 espacio
-const INDENT_aux8 = "        "; // 8 espacio
+const {
+  INDENT_aux1,
+  INDENT_aux2,
+  INDENT_aux4,
+  INDENT_aux6,
+  INDENT_aux8,
+  INDENT_aux10,
+  formatNumberDecimal16y2,
+  formatNumberDecimal16y3,
+  formatNumberDecimal16y4,
+  formatNumberDecimal3y4,
+  formatNumberDecimal3y2
+} = require("./functionsUtils");
 
-const INDENT_aux10 = "          "; // 10 espacio
+
+
 
 function crearIdDoc(idDoc) {
   const lines = [];
+  const cheque = false;
 
   
 
@@ -31,16 +41,18 @@ function crearIdDoc(idDoc) {
     lines.push(`${INDENT_aux6}<TablaFormasPago>`);
     idDoc.TablaFormasPago.forEach(fp => {
       lines.push(`${INDENT_aux8}<FormaDePago>`);
+      if(fp.FormaPago == 2) cheque =true;
       if (fp.FormaPago) lines.push(`${INDENT_aux10}<FormaPago>${fp.FormaPago}</FormaPago>`);
-      if (fp.MontoPago) lines.push(`${INDENT_aux10}<MontoPago>${fp.MontoPago}</MontoPago>`);
+      if (fp.MontoPago) lines.push(`${INDENT_aux10}<MontoPago>${formatNumberDecimal16y2(fp.MontoPago)}</MontoPago>`);
       lines.push(`${INDENT_aux8}</FormaDePago>`);
     });
     lines.push(`${INDENT_aux6}</TablaFormasPago>`);
   }
 
-  if (idDoc.TipoCuentaPago) lines.push(`${INDENT_aux6}<TipoCuentaPago>${idDoc.TipoCuentaPago}</TipoCuentaPago>`);
-  if (idDoc.NumeroCuentaPago) lines.push(`${INDENT_aux6}<NumeroCuentaPago>${idDoc.NumeroCuentaPago}</NumeroCuentaPago>`);
-  if (idDoc.BancoPago) lines.push(`${INDENT_aux6}<BancoPago>${idDoc.BancoPago}</BancoPago>`);
+  if (idDoc.TipoCuentaPago  && cheque) lines.push(`${INDENT_aux6}<TipoCuentaPago>${idDoc.TipoCuentaPago}</TipoCuentaPago>`);
+  if (idDoc.NumeroCuentaPago && cheque) lines.push(`${INDENT_aux6}<NumeroCuentaPago>${idDoc.NumeroCuentaPago}</NumeroCuentaPago>`);
+  if (idDoc.BancoPago && cheque) lines.push(`${INDENT_aux6}<BancoPago>${idDoc.BancoPago}</BancoPago>`);
+
   if (idDoc.FechaDesde) lines.push(`${INDENT_aux6}<FechaDesde>${idDoc.FechaDesde}</FechaDesde>`);
   if (idDoc.FechaHasta) lines.push(`${INDENT_aux6}<FechaHasta>${idDoc.FechaHasta}</FechaHasta>`);
   if (idDoc.TotalPaginas) lines.push(`${INDENT_aux6}<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
@@ -79,11 +91,21 @@ function crearEmisor(emisor) {
     lines.push(`${INDENT_aux6}<Provincia>${emisor.Provincia}</Provincia>`);
 
   // TablaTelefonoEmisor
-  if (emisor.Telefonos && emisor.Telefonos.length > 0) {
+  // if (emisor.Telefonos && emisor.Telefonos.length > 0) {
+  //   lines.push(`${INDENT_aux6}<TablaTelefonoEmisor>`);
+  //   emisor.Telefonos.forEach(t => {
+  //     lines.push(`${INDENT_aux8}<TelefonoEmisor>${t}</TelefonoEmisor>`);
+  //   });
+  //   lines.push(`${INDENT_aux6}</TablaTelefonoEmisor>`);
+  // }
+
+  if (emisor.Telefonos && emisor.Telefonos.some(t => t && t.trim() !== "")) {
     lines.push(`${INDENT_aux6}<TablaTelefonoEmisor>`);
-    emisor.Telefonos.forEach(t => {
-      lines.push(`${INDENT_aux8}<TelefonoEmisor>${t}</TelefonoEmisor>`);
-    });
+    emisor.Telefonos
+      .filter(t => t && t.trim() !== "")
+      .forEach(t => {
+        lines.push(`${INDENT_aux8}<TelefonoEmisor>${t}</TelefonoEmisor>`);
+      });
     lines.push(`${INDENT_aux6}</TablaTelefonoEmisor>`);
   }
 
@@ -273,19 +295,19 @@ function crearTotales(totales) {
   lines.push(`${INDENT_aux4}<Totales>`);
 
   if (totales.MontoGravadoTotal)
-    lines.push(`${INDENT_aux6}<MontoGravadoTotal>${totales.MontoGravadoTotal}</MontoGravadoTotal>`);
+    lines.push(`${INDENT_aux6}<MontoGravadoTotal>${formatNumberDecimal16y2(totales.MontoGravadoTotal)}</MontoGravadoTotal>`);
 
   if (totales.MontoGravadoI1)
-    lines.push(`${INDENT_aux6}<MontoGravadoI1>${totales.MontoGravadoI1}</MontoGravadoI1>`);
+    lines.push(`${INDENT_aux6}<MontoGravadoI1>${formatNumberDecimal16y2(totales.MontoGravadoI1)}</MontoGravadoI1>`);
 
   if (totales.MontoGravadoI2)
-    lines.push(`${INDENT_aux6}<MontoGravadoI2>${totales.MontoGravadoI2}</MontoGravadoI2>`);
+    lines.push(`${INDENT_aux6}<MontoGravadoI2>${formatNumberDecimal16y2(totales.MontoGravadoI2)}</MontoGravadoI2>`);
 
   if (totales.MontoGravadoI3)
-    lines.push(`${INDENT_aux6}<MontoGravadoI3>${totales.MontoGravadoI3}</MontoGravadoI3>`);
+    lines.push(`${INDENT_aux6}<MontoGravadoI3>${formatNumberDecimal16y2(totales.MontoGravadoI3)}</MontoGravadoI3>`);
 
   if (totales.MontoExento)
-    lines.push(`${INDENT_aux6}<MontoExento>${totales.MontoExento}</MontoExento>`);
+    lines.push(`${INDENT_aux6}<MontoExento>${formatNumberDecimal16y2(totales.MontoExento)}</MontoExento>`);
 
   if (totales.ITBIS1)
     lines.push(`${INDENT_aux6}<ITBIS1>${totales.ITBIS1}</ITBIS1>`);
@@ -297,19 +319,19 @@ function crearTotales(totales) {
     lines.push(`${INDENT_aux6}<ITBIS3>${totales.ITBIS3}</ITBIS3>`);
 
   if (totales.TotalITBIS)
-    lines.push(`${INDENT_aux6}<TotalITBIS>${totales.TotalITBIS}</TotalITBIS>`);
+    lines.push(`${INDENT_aux6}<TotalITBIS>${formatNumberDecimal16y2(totales.TotalITBIS)}</TotalITBIS>`);
 
   if (totales.TotalITBIS1)
-    lines.push(`${INDENT_aux6}<TotalITBIS1>${totales.TotalITBIS1}</TotalITBIS1>`);
+    lines.push(`${INDENT_aux6}<TotalITBIS1>${formatNumberDecimal16y2(totales.TotalITBIS1)}</TotalITBIS1>`);
 
   if (totales.TotalITBIS2)
-    lines.push(`${INDENT_aux6}<TotalITBIS2>${totales.TotalITBIS2}</TotalITBIS2>`);
+    lines.push(`${INDENT_aux6}<TotalITBIS2>${formatNumberDecimal16y2(totales.TotalITBIS2)}</TotalITBIS2>`);
 
   if (totales.TotalITBIS3)
-    lines.push(`${INDENT_aux6}<TotalITBIS3>${totales.TotalITBIS3}</TotalITBIS3>`);
+    lines.push(`${INDENT_aux6}<TotalITBIS3>${formatNumberDecimal16y2(totales.TotalITBIS3)}</TotalITBIS3>`);
 
   if (totales.MontoImpuestoAdicional)
-    lines.push(`${INDENT_aux6}<MontoImpuestoAdicional>${totales.MontoImpuestoAdicional}</MontoImpuestoAdicional>`);
+    lines.push(`${INDENT_aux6}<MontoImpuestoAdicional>${formatNumberDecimal16y2(totales.MontoImpuestoAdicional)}</MontoImpuestoAdicional>`);
 
   // ------------------------------
   // Subnodo: ImpuestosAdicionales
@@ -327,13 +349,13 @@ function crearTotales(totales) {
         lines.push(`${INDENT_aux10}<TasaImpuestoAdicional>${imp.TasaImpuestoAdicional}</TasaImpuestoAdicional>`);
 
       if (imp.MontoImpuestoSelectivoConsumoEspecifico)
-        lines.push(`${INDENT_aux10}<MontoImpuestoSelectivoConsumoEspecifico>${imp.MontoImpuestoSelectivoConsumoEspecifico}</MontoImpuestoSelectivoConsumoEspecifico>`);
+        lines.push(`${INDENT_aux10}<MontoImpuestoSelectivoConsumoEspecifico>${formatNumberDecimal16y2(imp.MontoImpuestoSelectivoConsumoEspecifico)}</MontoImpuestoSelectivoConsumoEspecifico>`);
 
       if (imp.MontoImpuestoSelectivoConsumoAdvalorem)
-        lines.push(`${INDENT_aux10}<MontoImpuestoSelectivoConsumoAdvalorem>${imp.MontoImpuestoSelectivoConsumoAdvalorem}</MontoImpuestoSelectivoConsumoAdvalorem>`);
+        lines.push(`${INDENT_aux10}<MontoImpuestoSelectivoConsumoAdvalorem>${formatNumberDecimal16y2(imp.MontoImpuestoSelectivoConsumoAdvalorem)}</MontoImpuestoSelectivoConsumoAdvalorem>`);
 
       if (imp.OtrosImpuestosAdicionales)
-        lines.push(`${INDENT_aux10}<OtrosImpuestosAdicionales>${imp.OtrosImpuestosAdicionales}</OtrosImpuestosAdicionales>`);
+        lines.push(`${INDENT_aux10}<OtrosImpuestosAdicionales>${formatNumberDecimal16y2(imp.OtrosImpuestosAdicionales)}</OtrosImpuestosAdicionales>`);
 
       lines.push(`${INDENT_aux8}</ImpuestoAdicional>`);
     });
@@ -342,34 +364,34 @@ function crearTotales(totales) {
   }
 
   if (totales.MontoTotal)
-    lines.push(`${INDENT_aux6}<MontoTotal>${totales.MontoTotal}</MontoTotal>`);
+    lines.push(`${INDENT_aux6}<MontoTotal>${formatNumberDecimal16y2(totales.MontoTotal)}</MontoTotal>`);
 
   if (totales.MontoNoFacturable)
-    lines.push(`${INDENT_aux6}<MontoNoFacturable>${totales.MontoNoFacturable}</MontoNoFacturable>`);
+    lines.push(`${INDENT_aux6}<MontoNoFacturable>${formatNumberDecimal16y2(totales.MontoNoFacturable)}</MontoNoFacturable>`);
 
   if (totales.MontoPeriodo)
-    lines.push(`${INDENT_aux6}<MontoPeriodo>${totales.MontoPeriodo}</MontoPeriodo>`);
+    lines.push(`${INDENT_aux6}<MontoPeriodo>${formatNumberDecimal16y2(totales.MontoPeriodo)}</MontoPeriodo>`);
 
   if (totales.SaldoAnterior)
-    lines.push(`${INDENT_aux6}<SaldoAnterior>${totales.SaldoAnterior}</SaldoAnterior>`);
+    lines.push(`${INDENT_aux6}<SaldoAnterior>${formatNumberDecimal16y2(totales.SaldoAnterior)}</SaldoAnterior>`);
 
   if (totales.MontoAvancePago)
-    lines.push(`${INDENT_aux6}<MontoAvancePago>${totales.MontoAvancePago}</MontoAvancePago>`);
+    lines.push(`${INDENT_aux6}<MontoAvancePago>${formatNumberDecimal16y2(totales.MontoAvancePago)}</MontoAvancePago>`);
 
   if (totales.ValorPagar)
-    lines.push(`${INDENT_aux6}<ValorPagar>${totales.ValorPagar}</ValorPagar>`);
+    lines.push(`${INDENT_aux6}<ValorPagar>${formatNumberDecimal16y2(totales.ValorPagar)}</ValorPagar>`);
 
   if (totales.TotalITBISRetenido)
-    lines.push(`${INDENT_aux6}<TotalITBISRetenido>${totales.TotalITBISRetenido}</TotalITBISRetenido>`);
+    lines.push(`${INDENT_aux6}<TotalITBISRetenido>${formatNumberDecimal16y2(totales.TotalITBISRetenido)}</TotalITBISRetenido>`);
 
   if (totales.TotalISRRetencion)
-    lines.push(`${INDENT_aux6}<TotalISRRetencion>${totales.TotalISRRetencion}</TotalISRRetencion>`);
+    lines.push(`${INDENT_aux6}<TotalISRRetencion>${formatNumberDecimal16y2(totales.TotalISRRetencion)}</TotalISRRetencion>`);
 
   if (totales.TotalITBISPercepcion)
-    lines.push(`${INDENT_aux6}<TotalITBISPercepcion>${totales.TotalITBISPercepcion}</TotalITBISPercepcion>`);
+    lines.push(`${INDENT_aux6}<TotalITBISPercepcion>${formatNumberDecimal16y2(totales.TotalITBISPercepcion)}</TotalITBISPercepcion>`);
 
   if (totales.TotalISRPercepcion)
-    lines.push(`${INDENT_aux6}<TotalISRPercepcion>${totales.TotalISRPercepcion}</TotalISRPercepcion>`);
+    lines.push(`${INDENT_aux6}<TotalISRPercepcion>${formatNumberDecimal16y2(totales.TotalISRPercepcion)}</TotalISRPercepcion>`);
 
   lines.push(`${INDENT_aux4}</Totales>`);
 
@@ -385,17 +407,17 @@ function crearOtraMoneda(moneda) {
   lines.push(`${INDENT_aux4}<OtraMoneda>`);
 
   if (moneda.TipoMoneda) lines.push(`${INDENT_aux6}<TipoMoneda>${moneda.TipoMoneda}</TipoMoneda>`);
-  if (moneda.TipoCambio) lines.push(`${INDENT_aux6}<TipoCambio>${moneda.TipoCambio}</TipoCambio>`);
-  if (moneda.MontoGravadoTotalOtraMoneda) lines.push(`${INDENT_aux6}<MontoGravadoTotalOtraMoneda>${moneda.MontoGravadoTotalOtraMoneda}</MontoGravadoTotalOtraMoneda>`);
-  if (moneda.MontoGravado1OtraMoneda) lines.push(`${INDENT_aux6}<MontoGravado1OtraMoneda>${moneda.MontoGravado1OtraMoneda}</MontoGravado1OtraMoneda>`);
-  if (moneda.MontoGravado2OtraMoneda) lines.push(`${INDENT_aux6}<MontoGravado2OtraMoneda>${moneda.MontoGravado2OtraMoneda}</MontoGravado2OtraMoneda>`);
-  if (moneda.MontoGravado3OtraMoneda) lines.push(`${INDENT_aux6}<MontoGravado3OtraMoneda>${moneda.MontoGravado3OtraMoneda}</MontoGravado3OtraMoneda>`);
-  if (moneda.MontoExentoOtraMoneda) lines.push(`${INDENT_aux6}<MontoExentoOtraMoneda>${moneda.MontoExentoOtraMoneda}</MontoExentoOtraMoneda>`);
-  if (moneda.TotalITBISOtraMoneda) lines.push(`${INDENT_aux6}<TotalITBISOtraMoneda>${moneda.TotalITBISOtraMoneda}</TotalITBISOtraMoneda>`);
-  if (moneda.TotalITBIS1OtraMoneda) lines.push(`${INDENT_aux6}<TotalITBIS1OtraMoneda>${moneda.TotalITBIS1OtraMoneda}</TotalITBIS1OtraMoneda>`);
-  if (moneda.TotalITBIS2OtraMoneda) lines.push(`${INDENT_aux6}<TotalITBIS2OtraMoneda>${moneda.TotalITBIS2OtraMoneda}</TotalITBIS2OtraMoneda>`);
-  if (moneda.TotalITBIS3OtraMoneda) lines.push(`${INDENT_aux6}<TotalITBIS3OtraMoneda>${moneda.TotalITBIS3OtraMoneda}</TotalITBIS3OtraMoneda>`);
-  if (moneda.MontoImpuestoAdicionalOtraMoneda) lines.push(`${INDENT_aux6}<MontoImpuestoAdicionalOtraMoneda>${moneda.MontoImpuestoAdicionalOtraMoneda}</MontoImpuestoAdicionalOtraMoneda>`);
+  if (moneda.TipoCambio) lines.push(`${INDENT_aux6}<TipoCambio>${formatNumberDecimal3y4(moneda.TipoCambio)}</TipoCambio>`);
+  if (moneda.MontoGravadoTotalOtraMoneda) lines.push(`${INDENT_aux6}<MontoGravadoTotalOtraMoneda>${formatNumberDecimal16y2(moneda.MontoGravadoTotalOtraMoneda)}</MontoGravadoTotalOtraMoneda>`);
+  if (moneda.MontoGravado1OtraMoneda) lines.push(`${INDENT_aux6}<MontoGravado1OtraMoneda>${formatNumberDecimal16y2(moneda.MontoGravado1OtraMoneda)}</MontoGravado1OtraMoneda>`);
+  if (moneda.MontoGravado2OtraMoneda) lines.push(`${INDENT_aux6}<MontoGravado2OtraMoneda>${formatNumberDecimal16y2(moneda.MontoGravado2OtraMoneda)}</MontoGravado2OtraMoneda>`);
+  if (moneda.MontoGravado3OtraMoneda) lines.push(`${INDENT_aux6}<MontoGravado3OtraMoneda>${formatNumberDecimal16y2(moneda.MontoGravado3OtraMoneda)}</MontoGravado3OtraMoneda>`);
+  if (moneda.MontoExentoOtraMoneda) lines.push(`${INDENT_aux6}<MontoExentoOtraMoneda>${formatNumberDecimal16y2(moneda.MontoExentoOtraMoneda)}</MontoExentoOtraMoneda>`);
+  if (moneda.TotalITBISOtraMoneda) lines.push(`${INDENT_aux6}<TotalITBISOtraMoneda>${formatNumberDecimal16y2(moneda.TotalITBISOtraMoneda)}</TotalITBISOtraMoneda>`);
+  if (moneda.TotalITBIS1OtraMoneda) lines.push(`${INDENT_aux6}<TotalITBIS1OtraMoneda>${formatNumberDecimal16y2(moneda.TotalITBIS1OtraMoneda)}</TotalITBIS1OtraMoneda>`);
+  if (moneda.TotalITBIS2OtraMoneda) lines.push(`${INDENT_aux6}<TotalITBIS2OtraMoneda>${formatNumberDecimal16y2(moneda.TotalITBIS2OtraMoneda)}</TotalITBIS2OtraMoneda>`);
+  if (moneda.TotalITBIS3OtraMoneda) lines.push(`${INDENT_aux6}<TotalITBIS3OtraMoneda>${formatNumberDecimal16y2(moneda.TotalITBIS3OtraMoneda)}</TotalITBIS3OtraMoneda>`);
+  if (moneda.MontoImpuestoAdicionalOtraMoneda) lines.push(`${INDENT_aux6}<MontoImpuestoAdicionalOtraMoneda>${formatNumberDecimal16y2(moneda.MontoImpuestoAdicionalOtraMoneda)}</MontoImpuestoAdicionalOtraMoneda>`);
 
   // Subnodo: ImpuestosAdicionalesOtraMoneda
   if (moneda.ImpuestosAdicionalesOtraMoneda && moneda.ImpuestosAdicionalesOtraMoneda.length > 0) {
@@ -411,13 +433,13 @@ function crearOtraMoneda(moneda) {
         lines.push(`${INDENT_aux10}<TasaImpuestoAdicionalOtraMoneda>${imp.TasaImpuestoAdicionalOtraMoneda}</TasaImpuestoAdicionalOtraMoneda>`);
 
       if (imp.MontoImpuestoSelectivoConsumoEspecificoOtraMoneda)
-        lines.push(`${INDENT_aux10}<MontoImpuestoSelectivoConsumoEspecificoOtraMoneda>${imp.MontoImpuestoSelectivoConsumoEspecificoOtraMoneda}</MontoImpuestoSelectivoConsumoEspecificoOtraMoneda>`);
+        lines.push(`${INDENT_aux10}<MontoImpuestoSelectivoConsumoEspecificoOtraMoneda>${formatNumberDecimal16y2(imp.MontoImpuestoSelectivoConsumoEspecificoOtraMoneda)}</MontoImpuestoSelectivoConsumoEspecificoOtraMoneda>`);
 
       if (imp.MontoImpuestoSelectivoConsumoAdvaloremOtraMoneda)
-        lines.push(`${INDENT_aux10}<MontoImpuestoSelectivoConsumoAdvaloremOtraMoneda>${imp.MontoImpuestoSelectivoConsumoAdvaloremOtraMoneda}</MontoImpuestoSelectivoConsumoAdvaloremOtraMoneda>`);
+        lines.push(`${INDENT_aux10}<MontoImpuestoSelectivoConsumoAdvaloremOtraMoneda>${formatNumberDecimal16y2(imp.MontoImpuestoSelectivoConsumoAdvaloremOtraMoneda)}</MontoImpuestoSelectivoConsumoAdvaloremOtraMoneda>`);
 
       if (imp.OtrosImpuestosAdicionalesOtraMoneda)
-        lines.push(`${INDENT_aux10}<OtrosImpuestosAdicionalesOtraMoneda>${imp.OtrosImpuestosAdicionalesOtraMoneda}</OtrosImpuestosAdicionalesOtraMoneda>`);
+        lines.push(`${INDENT_aux10}<OtrosImpuestosAdicionalesOtraMoneda>${formatNumberDecimal16y2(imp.OtrosImpuestosAdicionalesOtraMoneda)}</OtrosImpuestosAdicionalesOtraMoneda>`);
 
       lines.push(`${INDENT_aux8}</ImpuestoAdicionalOtraMoneda>`);
     });
@@ -426,7 +448,7 @@ function crearOtraMoneda(moneda) {
   }
 
   if (moneda.MontoTotalOtraMoneda)
-    lines.push(`${INDENT_aux6}<MontoTotalOtraMoneda>${moneda.MontoTotalOtraMoneda}</MontoTotalOtraMoneda>`);
+    lines.push(`${INDENT_aux6}<MontoTotalOtraMoneda>${formatNumberDecimal16y2(moneda.MontoTotalOtraMoneda)}</MontoTotalOtraMoneda>`);
 
   lines.push(`${INDENT_aux4}</OtraMoneda>`);
 
@@ -480,18 +502,18 @@ function crearDetallesItems(items) {
       if (item.Retencion.IndicadorAgenteRetencionoPercepcion)
         lines.push(`${INDENT_aux8}<IndicadorAgenteRetencionoPercepcion>${item.Retencion.IndicadorAgenteRetencionoPercepcion}</IndicadorAgenteRetencionoPercepcion>`);
       if (item.Retencion.MontoITBISRetenido)
-        lines.push(`${INDENT_aux8}<MontoITBISRetenido>${item.Retencion.MontoITBISRetenido}</MontoITBISRetenido>`);
+        lines.push(`${INDENT_aux8}<MontoITBISRetenido>${formatNumberDecimal16y2(item.Retencion.MontoITBISRetenido)}</MontoITBISRetenido>`);
       if (item.Retencion.MontoISRRetenido)
-        lines.push(`${INDENT_aux8}<MontoISRRetenido>${item.Retencion.MontoISRRetenido}</MontoISRRetenido>`);
+        lines.push(`${INDENT_aux8}<MontoISRRetenido>${formatNumberDecimal16y2(item.Retencion.MontoISRRetenido)}</MontoISRRetenido>`);
       lines.push(`${INDENT_aux6}</Retencion>`);
     }
 
     if (item.NombreItem) lines.push(`${INDENT_aux6}<NombreItem>${item.NombreItem}</NombreItem>`);
     if (item.IndicadorBienoServicio) lines.push(`${INDENT_aux6}<IndicadorBienoServicio>${item.IndicadorBienoServicio}</IndicadorBienoServicio>`);
     if (item.DescripcionItem) lines.push(`${INDENT_aux6}<DescripcionItem>${item.DescripcionItem}</DescripcionItem>`);
-    if (item.CantidadItem) lines.push(`${INDENT_aux6}<CantidadItem>${item.CantidadItem}</CantidadItem>`);
+    if (item.CantidadItem) lines.push(`${INDENT_aux6}<CantidadItem>${formatNumberDecimal16y2(item.CantidadItem)}</CantidadItem>`);
     if (item.UnidadMedida) lines.push(`${INDENT_aux6}<UnidadMedida>${item.UnidadMedida}</UnidadMedida>`);
-    if (item.CantidadReferencia) lines.push(`${INDENT_aux6}<CantidadReferencia>${item.CantidadReferencia}</CantidadReferencia>`);
+    if (item.CantidadReferencia) lines.push(`${INDENT_aux6}<CantidadReferencia>${formatNumberDecimal16y2(item.CantidadReferencia)}</CantidadReferencia>`);
     if (item.UnidadReferencia) lines.push(`${INDENT_aux6}<UnidadReferencia>${item.UnidadReferencia}</UnidadReferencia>`);
 
     // TablaSubcantidad
@@ -499,19 +521,19 @@ function crearDetallesItems(items) {
       lines.push(`${INDENT_aux6}<TablaSubcantidad>`);
       item.TablaSubcantidad.forEach(s => {
         lines.push(`${INDENT_aux8}<SubcantidadItem>`);
-        lines.push(`${INDENT_aux8}<Subcantidad>${s.Subcantidad}</Subcantidad>`);
+        lines.push(`${INDENT_aux8}<Subcantidad>${formatNumberDecimal16y3(s.Subcantidad)}</Subcantidad>`);
         lines.push(`${INDENT_aux8}<CodigoSubcantidad>${s.CodigoSubcantidad}</CodigoSubcantidad>`);
         lines.push(`${INDENT_aux8}</SubcantidadItem>`);
       });
       lines.push(`${INDENT_aux6}</TablaSubcantidad>`);
     }
 
-    if (item.GradosAlcohol) lines.push(`${INDENT_aux6}<GradosAlcohol>${item.GradosAlcohol}</GradosAlcohol>`);
-    if (item.PrecioUnitarioReferencia) lines.push(`${INDENT_aux6}<PrecioUnitarioReferencia>${item.PrecioUnitarioReferencia}</PrecioUnitarioReferencia>`);
+    if (item.GradosAlcohol) lines.push(`${INDENT_aux6}<GradosAlcohol>${formatNumberDecimal3y2(item.GradosAlcohol)}</GradosAlcohol>`);
+    if (item.PrecioUnitarioReferencia) lines.push(`${INDENT_aux6}<PrecioUnitarioReferencia>${formatNumberDecimal16y2(item.PrecioUnitarioReferenci)}</PrecioUnitarioReferencia>`);
     if (item.FechaElaboracion) lines.push(`${INDENT_aux6}<FechaElaboracion>${item.FechaElaboracion}</FechaElaboracion>`);
     if (item.FechaVencimientoItem) lines.push(`${INDENT_aux6}<FechaVencimientoItem>${item.FechaVencimientoItem}</FechaVencimientoItem>`);
-    if (item.PrecioUnitarioItem) lines.push(`${INDENT_aux6}<PrecioUnitarioItem>${item.PrecioUnitarioItem}</PrecioUnitarioItem>`);
-    if (item.DescuentoMonto) lines.push(`${INDENT_aux6}<DescuentoMonto>${item.DescuentoMonto}</DescuentoMonto>`);
+    if (item.PrecioUnitarioItem) lines.push(`${INDENT_aux6}<PrecioUnitarioItem>${formatNumberDecimal16y4(item.PrecioUnitarioItem)}</PrecioUnitarioItem>`);
+    if (item.DescuentoMonto) lines.push(`${INDENT_aux6}<DescuentoMonto>${formatNumberDecimal16y2(item.DescuentoMonto)}</DescuentoMonto>`);
 
     // TablaSubDescuento
     if (item.TablaSubDescuento && item.TablaSubDescuento.length > 0) {
@@ -519,14 +541,14 @@ function crearDetallesItems(items) {
       item.TablaSubDescuento.forEach(d => {
         lines.push(`${INDENT_aux8}<SubDescuento>`);
         lines.push(`${INDENT_aux8}<TipoSubDescuento>${d.TipoSubDescuento}</TipoSubDescuento>`);
-        lines.push(`${INDENT_aux8}<SubDescuentoPorcentaje>${d.SubDescuentoPorcentaje}</SubDescuentoPorcentaje>`);
-        lines.push(`${INDENT_aux8}<MontoSubDescuento>${d.MontoSubDescuento}</MontoSubDescuento>`);
+        lines.push(`${INDENT_aux8}<SubDescuentoPorcentaje>${formatNumberDecimal3y2(d.SubDescuentoPorcentaje)}</SubDescuentoPorcentaje>`);
+        lines.push(`${INDENT_aux8}<MontoSubDescuento>${formatNumberDecimal16y2(d.MontoSubDescuento)}</MontoSubDescuento>`);
         lines.push(`${INDENT_aux8}</SubDescuento>`);
       });
       lines.push(`${INDENT_aux6}</TablaSubDescuento>`);
     }
 
-    if (item.RecargoMonto) lines.push(`${INDENT_aux6}<RecargoMonto>${item.RecargoMonto}</RecargoMonto>`);
+    if (item.RecargoMonto) lines.push(`${INDENT_aux6}<RecargoMonto>${formatNumberDecimal16y2(item.RecargoMonto)}</RecargoMonto>`);
 
     // TablaSubRecargo
     if (item.TablaSubRecargo && item.TablaSubRecargo.length > 0) {
@@ -534,8 +556,8 @@ function crearDetallesItems(items) {
       item.TablaSubRecargo.forEach(r => {
         lines.push(`${INDENT_aux8}<SubRecargo>`);
         lines.push(`${INDENT_aux10}<TipoSubRecargo>${r.TipoSubRecargo}</TipoSubRecargo>`);
-        if (r.SubRecargoPorcentaje) lines.push(`${INDENT_aux10}<SubRecargoPorcentaje>${r.SubRecargoPorcentaje}</SubRecargoPorcentaje>`);
-        lines.push(`${INDENT_aux10}<MontoSubRecargo>${r.MontoSubRecargo}</MontoSubRecargo>`);
+        if (r.SubRecargoPorcentaje) lines.push(`${INDENT_aux10}<SubRecargoPorcentaje>${formatNumberDecimal3y2(r.SubRecargoPorcentaje)}</SubRecargoPorcentaje>`);
+        lines.push(`${INDENT_aux10}<MontoSubRecargo>${formatNumberDecimal16y2(r.MontoSubRecargo)}</MontoSubRecargo>`);
         lines.push(`${INDENT_aux8}</SubRecargo>`);
       });
       lines.push(`${INDENT_aux6}</TablaSubRecargo>`);
@@ -561,7 +583,7 @@ function crearDetallesItems(items) {
       lines.push(`${INDENT_aux6}</OtraMonedaDetalle>`);
     }
 
-    if (item.MontoItem) lines.push(`${INDENT_aux6}<MontoItem>${item.MontoItem}</MontoItem>`);
+    if (item.MontoItem) lines.push(`${INDENT_aux6}<MontoItem>${formatNumberDecimal16y2(item.MontoItem)}</MontoItem>`);
 
     lines.push(`${INDENT_aux4}</Item>`);
   });
@@ -589,37 +611,37 @@ function crearSubtotal(subtotal) {
     lines.push(`${INDENT_aux6}<Orden>${subtotal.Orden}</Orden>`);
 
   if (subtotal.SubTotalMontoGravadoTotal)
-    lines.push(`${INDENT_aux6}<SubTotalMontoGravadoTotal>${subtotal.SubTotalMontoGravadoTotal}</SubTotalMontoGravadoTotal>`);
+    lines.push(`${INDENT_aux6}<SubTotalMontoGravadoTotal>${formatNumberDecimal16y2(subtotal.SubTotalMontoGravadoTotal)}</SubTotalMontoGravadoTotal>`);
 
   if (subtotal.SubTotalMontoGravadoI1)
-    lines.push(`${INDENT_aux6}<SubTotalMontoGravadoI1>${subtotal.SubTotalMontoGravadoI1}</SubTotalMontoGravadoI1>`);
+    lines.push(`${INDENT_aux6}<SubTotalMontoGravadoI1>${formatNumberDecimal16y2(subtotal.SubTotalMontoGravadoI1)}</SubTotalMontoGravadoI1>`);
 
   if (subtotal.SubTotalMontoGravadoI2)
-    lines.push(`${INDENT_aux6}<SubTotalMontoGravadoI2>${subtotal.SubTotalMontoGravadoI2}</SubTotalMontoGravadoI2>`);
+    lines.push(`${INDENT_aux6}<SubTotalMontoGravadoI2>${formatNumberDecimal16y2(subtotal.SubTotalMontoGravadoI2)}</SubTotalMontoGravadoI2>`);
 
   if (subtotal.SubTotalMontoGravadoI3)
-    lines.push(`${INDENT_aux6}<SubTotalMontoGravadoI3>${subtotal.SubTotalMontoGravadoI3}</SubTotalMontoGravadoI3>`);
+    lines.push(`${INDENT_aux6}<SubTotalMontoGravadoI3>${formatNumberDecimal16y2(subtotal.SubTotalMontoGravadoI3)}</SubTotalMontoGravadoI3>`);
 
   if (subtotal.SubTotaITBIS)
-    lines.push(`${INDENT_aux6}<SubTotaITBIS>${subtotal.SubTotaITBIS}</SubTotaITBIS>`);
+    lines.push(`${INDENT_aux6}<SubTotaITBIS>${formatNumberDecimal16y2(subtotal.SubTotaITBIS)}</SubTotaITBIS>`);
 
   if (subtotal.SubTotaITBIS1)
-    lines.push(`${INDENT_aux6}<SubTotaITBIS1>${subtotal.SubTotaITBIS1}</SubTotaITBIS1>`);
+    lines.push(`${INDENT_aux6}<SubTotaITBIS1>${formatNumberDecimal16y2(subtotal.SubTotaITBIS1)}</SubTotaITBIS1>`);
 
   if (subtotal.SubTotaITBIS2)
-    lines.push(`${INDENT_aux6}<SubTotaITBIS2>${subtotal.SubTotaITBIS2}</SubTotaITBIS2>`);
+    lines.push(`${INDENT_aux6}<SubTotaITBIS2>${formatNumberDecimal16y2(subtotal.SubTotaITBIS2)}</SubTotaITBIS2>`);
 
   if (subtotal.SubTotaITBIS3)
-    lines.push(`${INDENT_aux6}<SubTotaITBIS3>${subtotal.SubTotaITBIS3}</SubTotaITBIS3>`);
+    lines.push(`${INDENT_aux6}<SubTotaITBIS3>${formatNumberDecimal16y2(subtotal.SubTotaITBIS3)}</SubTotaITBIS3>`);
 
   if (subtotal.SubTotalImpuestoAdicional)
-    lines.push(`${INDENT_aux6}<SubTotalImpuestoAdicional>${subtotal.SubTotalImpuestoAdicional}</SubTotalImpuestoAdicional>`);
+    lines.push(`${INDENT_aux6}<SubTotalImpuestoAdicional>${formatNumberDecimal16y2(subtotal.SubTotalImpuestoAdicional)}</SubTotalImpuestoAdicional>`);
 
   if (subtotal.SubTotalExento)
-    lines.push(`${INDENT_aux6}<SubTotalExento>${subtotal.SubTotalExento}</SubTotalExento>`);
+    lines.push(`${INDENT_aux6}<SubTotalExento>${formatNumberDecimal16y2(subtotal.SubTotalExento)}</SubTotalExento>`);
 
   if (subtotal.MontoSubTotal)
-    lines.push(`${INDENT_aux6}<MontoSubTotal>${subtotal.MontoSubTotal}</MontoSubTotal>`);
+    lines.push(`${INDENT_aux6}<MontoSubTotal>${formatNumberDecimal16y2(subtotal.MontoSubTotal)}</MontoSubTotal>`);
 
   if (subtotal.Lineas)
     lines.push(`${INDENT_aux6}<Lineas>${subtotal.Lineas}</Lineas>`);
@@ -664,13 +686,13 @@ function crearDescuentoORecargo(desc) {
     lines.push(`${INDENT_aux6}<TipoValor>${desc.TipoValor}</TipoValor>`);
 
   if (desc.ValorDescuentooRecargo !== undefined && desc.ValorDescuentooRecargo !== null)
-    lines.push(`${INDENT_aux6}<ValorDescuentooRecargo>${desc.ValorDescuentooRecargo}</ValorDescuentooRecargo>`);
+    lines.push(`${INDENT_aux6}<ValorDescuentooRecargo>${formatNumberDecimal3y2(desc.ValorDescuentooRecargo)}</ValorDescuentooRecargo>`);
 
   if (desc.MontoDescuentooRecargo !== undefined && desc.MontoDescuentooRecargo !== null)
-    lines.push(`${INDENT_aux6}<MontoDescuentooRecargo>${desc.MontoDescuentooRecargo}</MontoDescuentooRecargo>`);
+    lines.push(`${INDENT_aux6}<MontoDescuentooRecargo>${formatNumberDecimal16y2(desc.MontoDescuentooRecargo)}</MontoDescuentooRecargo>`);
 
   if (desc.MontoDescuentooRecargoOtraMoneda !== undefined && desc.MontoDescuentooRecargoOtraMoneda !== null)
-    lines.push(`${INDENT_aux6}<MontoDescuentooRecargoOtraMoneda>${desc.MontoDescuentooRecargoOtraMoneda}</MontoDescuentooRecargoOtraMoneda>`);
+    lines.push(`${INDENT_aux6}<MontoDescuentooRecargoOtraMoneda>${formatNumberDecimal16y2(desc.MontoDescuentooRecargoOtraMoneda)}</MontoDescuentooRecargoOtraMoneda>`);
 
   if (desc.IndicadorFacturacionDescuentooRecargo !== undefined && desc.IndicadorFacturacionDescuentooRecargo !== null)
     lines.push(`${INDENT_aux6}<IndicadorFacturacionDescuentooRecargo>${desc.IndicadorFacturacionDescuentooRecargo}</IndicadorFacturacionDescuentooRecargo>`);
@@ -709,34 +731,34 @@ function crearPagina(pagina) {
     lines.push(`${INDENT_aux6}<NoLineaHasta>${pagina.NoLineaHasta}</NoLineaHasta>`);
 
   if (pagina.SubtotalMontoGravadoPagina !== undefined && pagina.SubtotalMontoGravadoPagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalMontoGravadoPagina>${pagina.SubtotalMontoGravadoPagina}</SubtotalMontoGravadoPagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalMontoGravadoPagina>${formatNumberDecimal16y2(pagina.SubtotalMontoGravadoPagina)}</SubtotalMontoGravadoPagina>`);
 
   if (pagina.SubtotalMontoGravado1Pagina !== undefined && pagina.SubtotalMontoGravado1Pagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalMontoGravado1Pagina>${pagina.SubtotalMontoGravado1Pagina}</SubtotalMontoGravado1Pagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalMontoGravado1Pagina>${formatNumberDecimal16y2(pagina.SubtotalMontoGravado1Pagina)}</SubtotalMontoGravado1Pagina>`);
 
   if (pagina.SubtotalMontoGravado2Pagina !== undefined && pagina.SubtotalMontoGravado2Pagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalMontoGravado2Pagina>${pagina.SubtotalMontoGravado2Pagina}</SubtotalMontoGravado2Pagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalMontoGravado2Pagina>${formatNumberDecimal16y2(pagina.SubtotalMontoGravado2Pagina)}</SubtotalMontoGravado2Pagina>`);
 
   if (pagina.SubtotalMontoGravado3Pagina !== undefined && pagina.SubtotalMontoGravado3Pagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalMontoGravado3Pagina>${pagina.SubtotalMontoGravado3Pagina}</SubtotalMontoGravado3Pagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalMontoGravado3Pagina>${formatNumberDecimal16y2(pagina.SubtotalMontoGravado3Pagina)}</SubtotalMontoGravado3Pagina>`);
 
   if (pagina.SubtotalExentoPagina !== undefined && pagina.SubtotalExentoPagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalExentoPagina>${pagina.SubtotalExentoPagina}</SubtotalExentoPagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalExentoPagina>${formatNumberDecimal16y2(pagina.SubtotalExentoPagina)}</SubtotalExentoPagina>`);
 
   if (pagina.SubtotalItbisPagina !== undefined && pagina.SubtotalItbisPagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalItbisPagina>${pagina.SubtotalItbisPagina}</SubtotalItbisPagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalItbisPagina>${formatNumberDecimal16y2(pagina.SubtotalItbisPagina)}</SubtotalItbisPagina>`);
 
   if (pagina.SubtotalItbis1Pagina !== undefined && pagina.SubtotalItbis1Pagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalItbis1Pagina>${pagina.SubtotalItbis1Pagina}</SubtotalItbis1Pagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalItbis1Pagina>${formatNumberDecimal16y2(pagina.SubtotalItbis1Pagina)}</SubtotalItbis1Pagina>`);
 
   if (pagina.SubtotalItbis2Pagina !== undefined && pagina.SubtotalItbis2Pagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalItbis2Pagina>${pagina.SubtotalItbis2Pagina}</SubtotalItbis2Pagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalItbis2Pagina>${formatNumberDecimal16y2(pagina.SubtotalItbis2Pagina)}</SubtotalItbis2Pagina>`);
 
   if (pagina.SubtotalItbis3Pagina !== undefined && pagina.SubtotalItbis3Pagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalItbis3Pagina>${pagina.SubtotalItbis3Pagina}</SubtotalItbis3Pagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalItbis3Pagina>${formatNumberDecimal16y2(pagina.SubtotalItbis3Pagina)}</SubtotalItbis3Pagina>`);
 
   if (pagina.SubtotalImpuestoAdicionalPagina !== undefined && pagina.SubtotalImpuestoAdicionalPagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalImpuestoAdicionalPagina>${pagina.SubtotalImpuestoAdicionalPagina}</SubtotalImpuestoAdicionalPagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalImpuestoAdicionalPagina>${formatNumberDecimal16y2(pagina.SubtotalImpuestoAdicionalPagina)}</SubtotalImpuestoAdicionalPagina>`);
 
   // --- Subnivel <SubtotalImpuestoAdicional> ---
   if (
@@ -746,19 +768,19 @@ function crearPagina(pagina) {
     lines.push(`${INDENT_aux6}<SubtotalImpuestoAdicional>`);
 
     if (pagina.SubtotalImpuestoSelectivoConsumoEspecificoPagina !== undefined && pagina.SubtotalImpuestoSelectivoConsumoEspecificoPagina !== null)
-      lines.push(`${INDENT_aux8}<SubtotalImpuestoSelectivoConsumoEspecificoPagina>${pagina.SubtotalImpuestoSelectivoConsumoEspecificoPagina}</SubtotalImpuestoSelectivoConsumoEspecificoPagina>`);
+      lines.push(`${INDENT_aux8}<SubtotalImpuestoSelectivoConsumoEspecificoPagina>${formatNumberDecimal16y2(pagina.SubtotalImpuestoSelectivoConsumoEspecificoPagina)}</SubtotalImpuestoSelectivoConsumoEspecificoPagina>`);
 
     if (pagina.SubtotalOtrosImpuesto !== undefined && pagina.SubtotalOtrosImpuesto !== null)
-      lines.push(`${INDENT_aux8}<SubtotalOtrosImpuesto>${pagina.SubtotalOtrosImpuesto}</SubtotalOtrosImpuesto>`);
+      lines.push(`${INDENT_aux8}<SubtotalOtrosImpuesto>${formatNumberDecimal16y2(pagina.SubtotalOtrosImpuesto)}</SubtotalOtrosImpuesto>`);
 
     lines.push(`${INDENT_aux6}</SubtotalImpuestoAdicional>`);
   }
 
   if (pagina.MontoSubtotalPagina !== undefined && pagina.MontoSubtotalPagina !== null)
-    lines.push(`${INDENT_aux6}<MontoSubtotalPagina>${pagina.MontoSubtotalPagina}</MontoSubtotalPagina>`);
+    lines.push(`${INDENT_aux6}<MontoSubtotalPagina>${formatNumberDecimal16y2(pagina.MontoSubtotalPagina)}</MontoSubtotalPagina>`);
 
   if (pagina.SubtotalMontoNoFacturablePagina !== undefined && pagina.SubtotalMontoNoFacturablePagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalMontoNoFacturablePagina>${pagina.SubtotalMontoNoFacturablePagina}</SubtotalMontoNoFacturablePagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalMontoNoFacturablePagina>${(pagina.SubtotalMontoNoFacturablePagina)}</SubtotalMontoNoFacturablePagina>`);
 
   lines.push(`${INDENT_aux4}</Pagina>`);
 
