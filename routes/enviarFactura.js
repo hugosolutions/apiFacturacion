@@ -16,6 +16,7 @@ router.post("/", async (req, res) => {
     res.json({
       status: "ok",
       mensaje: "Factura generada correctamente",
+      datos: datosFactura,
       xml: xml,
     });
   } catch (error) {
