@@ -9,6 +9,8 @@ router.post("/", async (req, res) => {
 
     const xml = crearFactura(datosFactura);
     // const xml = datosFactura;
+    console.log("Datos de la factura recibidos:", datosFactura);
+
 
     // Puedes guardar el XML o retornarlo directamente
     res.json({

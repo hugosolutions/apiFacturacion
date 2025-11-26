@@ -5,7 +5,6 @@
       <TipoeCF>01</TipoeCF>
       <eNCF>B0100000817</eNCF>
       <FechaVencimientoSecuencia>31-12-2026</FechaVencimientoSecuencia>
-      <IndicadorEnvioDiferido>0</IndicadorEnvioDiferido>
       <IndicadorMontoGravado>1</IndicadorMontoGravado>
       <TipoIngresos>6</TipoIngresos>
       <TipoPago>1</TipoPago>
@@ -16,7 +15,6 @@
       </TablaFormasPago>
       <FechaDesde>30-10-2025</FechaDesde>
       <FechaHasta>24-12-2025</FechaHasta>
-      <TotalPaginas>1</TotalPaginas>
     </IdDoc>
     <Emisor>
       <RNCEmisor>131311164</RNCEmisor>
@@ -25,6 +23,11 @@
       <DireccionEmisor>La Sirena Bartolomé Colon</DireccionEmisor>
       <Municipio>250100</Municipio>
       <Provincia>250000</Provincia>
+      <TablaTelefonoEmisor>
+        <TelefonoEmisor>809-693-7615</TelefonoEmisor>
+        <TelefonoEmisor>829-361-8596</TelefonoEmisor>
+      </TablaTelefonoEmisor>
+      <CorreoEmisor>hugosolucionesapp@gmail.com</CorreoEmisor>
       <NumeroFacturaInterna>3448ccd1</NumeroFacturaInterna>
       <NumeroPedidoInterno>192</NumeroPedidoInterno>
       <FechaEmision>19-11-2025</FechaEmision>
