@@ -29,12 +29,13 @@ function crearIdDoc(idDoc) {
   if (idDoc.TipoeCF) lines.push(`${INDENT_aux6}<TipoeCF>${idDoc.TipoeCF}</TipoeCF>`);
   if (idDoc.eNCF) lines.push(`${INDENT_aux6}<eNCF>${idDoc.eNCF}</eNCF>`);
   if (idDoc.FechaVencimientoSecuencia) lines.push(`${INDENT_aux6}<FechaVencimientoSecuencia>${idDoc.FechaVencimientoSecuencia}</FechaVencimientoSecuencia>`);
-  if (idDoc.IndicadorEnvioDiferido) lines.push(`${INDENT_aux6}<IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>`);
+  if (idDoc.IndicadorEnvioDiferido && idDoc.IndicadorEnvioDiferido>0) lines.push(`${INDENT_aux6}<IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>`);
   if (idDoc.IndicadorMontoGravado) lines.push(`${INDENT_aux6}<IndicadorMontoGravado>${idDoc.IndicadorMontoGravado}</IndicadorMontoGravado>`);
   if (idDoc.IndicadorServicioTodoIncluido) lines.push(`${INDENT_aux6}<IndicadorServicioTodoIncluido>${idDoc.IndicadorServicioTodoIncluido}</IndicadorServicioTodoIncluido>`);
   if (idDoc.TipoIngresos) lines.push(`${INDENT_aux6}<TipoIngresos>${idDoc.TipoIngresos}</TipoIngresos>`);
   if (idDoc.TipoPago) lines.push(`${INDENT_aux6}<TipoPago>${idDoc.TipoPago}</TipoPago>`);
-  if (idDoc.TerminoPago) lines.push(`${INDENT_aux6}<TerminoPago>${idDoc.TerminoPago}</TerminoPago>`);
+  if (idDoc.FechaLimitePago && idDoc.TipoPago == 2)  lines.push(`${INDENT_aux6}<FechaLimitePago>${idDoc.FechaLimitePago}</FechaLimitePago>`);
+  if (idDoc.TerminoPago && idDoc.TipoPago == 2) lines.push(`${INDENT_aux6}<TerminoPago>${idDoc.TerminoPago}</TerminoPago>`);
 
   // TablaFormasPago
   if (idDoc.TablaFormasPago && idDoc.TablaFormasPago.length > 0) {
@@ -55,7 +56,7 @@ function crearIdDoc(idDoc) {
 
   if (idDoc.FechaDesde) lines.push(`${INDENT_aux6}<FechaDesde>${idDoc.FechaDesde}</FechaDesde>`);
   if (idDoc.FechaHasta) lines.push(`${INDENT_aux6}<FechaHasta>${idDoc.FechaHasta}</FechaHasta>`);
-  if (idDoc.TotalPaginas) lines.push(`${INDENT_aux6}<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
+  if (idDoc.TotalPaginas && idDoc.TotalPaginas>1) lines.push(`${INDENT_aux6}<TotalPaginas>${idDoc.TotalPaginas}</TotalPaginas>`);
 
   lines.push(`${INDENT_aux4}</IdDoc>`);
 

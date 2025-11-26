@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=60mm, initial-scale=1.0"> <!-- Cambia el ancho de la vista para el papel de 58mm -->
+    <title>Recibo</title>
+    <style>
+        body {
+            font-family: tahoma, Helvetica, sans-serif; /* Ajuste de fuente */
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            font-size: 3mm; /* Tamaño de letra similar al primer código */
+        }
+
+        .recibo {
+            max-width: 60mm; /* Ancho máximo similar al primer código */
+            margin: auto; /* Centrar en la página */
+        }
+
+        .header, .footer, .items, .totals {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .details {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .header img {
+            max-width: 50mm; /* Ajusta el tamaño de la imagen para que se ajuste al ancho de la impresora térmica */
+        }
+        p {
+            margin: 0;
+            padding: 0;
+        }
+
+        .header p, .footer p, .signature p {
+            margin: 0;
+            padding: 1mm 0; /* Margen y padding similar al primer código */
+        }
+
+        .items {
+            border-top: 1px dashed #000;
+            padding-top: 2mm;
+            margin-top: 2mm;
+            border-top: 1px dashed #000;
+            
+        }
+
+
+
+        .totals {
+            border-top: 1px dashed #000;
+            padding-top: 1mm;
+            margin-top: 2mm;
+        }
+
+        .lastTotal {
+            font-size: 5mm;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .totalsizquierdo {
+            border-top: 1px dashed #000;
+            padding-top: 1mm;
+            margin-top: 2mm;
+            text-align: right;
+            font-size: 3mm;
+        }
+
+        .totals td {
+            text-align: center;
+            font-size: 3mm; /* Tamaño de letra ajustado */
+        }
+
+        .totals .label {
+            text-align: left;
+        }
+
+        .totals .labela {
+            text-align: left;
+        }
+
+        .creditos {
+            display: none;
+            padding-top: 2mm;
+            margin-top: 2mm;
+        }
+
+        .items th, .items td {
+            text-align: left;
+            font-size: 3mm; /* Tamaño de letra ajustado */
+        }
+
+        .items .pro{
+            text-align: right;
+            font-size: 3mm; /* Tamaño de letra ajustado */
+        }
+
+
+
+        .items th {
+            font-weight: bold;
+        }
+
+
+
+        
+
+        .signature {
+            display: none;
+            text-align: center;
+            margin-top: 5mm;
+            font-weight: bold;
+        }
+
+
+    </style>
+</head>
+
+<body onload="window.print()" onfocus="window.close()">
+
+
+
+    <script>
+        // Obtener los parámetros de la URL
+        const params = new URLSearchParams(window.location.search);
+
+        var idLogo = params.has('idLogo') ? params.get('idLogo') : "";
+        
+
+        // Valores encabezado despues del logo
+        var descripcion = params.has('descripcion') ? params.get('descripcion') : "descripcion";
+        var Loterias = params.has('Loterias') ? params.get('Loterias') : "Loterias";
+
+        //valores datos de la factura
+        var noTicket = params.has('noTicket') ? params.get('noTicket') : "noTicket";
+
+        
+        var fechaAux = params.has('fecha') ? params.get('fecha') : "fecha";
+        var partesFecha = fechaAux.split('/');        
+        // Reorganiza la fecha al formato dd/mm/yyyy
+        var fecha = partesFecha[1] + '/' + partesFecha[0] + '/' + partesFecha[2];
+        var hora = params.has('hora') ? params.get('hora') : "hora";
+
+
+
+        //valores totales factura
+        var total = params.has('total') ? params.get('total') : "total";
+        var recibido = params.has('recibido') ? params.get('recibido') : "recibido";
+        var cambio = params.has('cambio') ? params.get('cambio') : "0.00";
+
+        //valores del detalle de la factura
+        var jugadaDetalle = params.has('jugadaDetalle') ? params.get('jugadaDetalle') : "jugadaDetalle";
+        var montoapostadoDetalle = params.has('montoapostadoDetalle') ? params.get('montoapostadoDetalle') : "montoapostadoDetalle";
+        
+
+        //pies de factura
+        var piePagina = params.has('piePagina') ? params.get('piePagina') : "piePagina";
+        var otroPie = params.has('otroPie') ? params.get('otroPie') : "otroPie";
+        
+        //Formato de 2 decimales
+        recibido = parseFloat(recibido).toLocaleString('en-US', { minimumFractionDigits: 2 });
+        cambio = parseFloat(cambio).toLocaleString('en-US', { minimumFractionDigits: 2 });
+
+        total = parseFloat(total).toLocaleString('en-US', { minimumFractionDigits: 2 });
+
+        
+        //crea una lista de cada columna a partir de las comas.
+        jugadaDetalle = jugadaDetalle.split(",");
+        montoapostadoDetalle = montoapostadoDetalle.split(",");
+
+        //Crea una lista para mostrar en cada fila de la tabla
+        var result = [];
+
+        jugadaDetalle.forEach(function(value, id) {
+            result[id] = {
+                jugada: jugadaDetalle[id],
+                precio_unit: parseFloat(montoapostadoDetalle[id]).toLocaleString('en-US', { minimumFractionDigits: 2 })
+            };
+        });
+        console.log(result);
+    </script>
+    <div class="recibo">
+        <div class="header">
+            <img id="imagenLogo" src="https://drive.google.com/thumbnail?id=17cXW3U50L2cL4xE4lGaF1iIahY01UhAD&sz=w1000" alt="Logo">
+            <p id="descripcion"></p>
+        </div>
+        
+        <div class="details">
+            <p id="noFactura"></p>
+            <p id="Loterias">Loterías: </p>
+            <p id="fecha">Fecha: </p>
+            <p id="hora">Hora: </p>
+        </div>
+
+        <div class="items">
+            <table width="100%" id="tablaItems">
+                <tr>
+                    <th>JUGADA</th>
+                    <th></th>
+                    <th class="pro">MONTO APOSTADO</th>
+                </tr>
+                <script>
+                    var tablaItems = document.getElementById("tablaItems");
+        
+                    result.forEach(function(row) {
+                        var jugadaRow = document.createElement("tr");
+                        var montoRow = document.createElement("tr");
+        
+                        jugadaRow.innerHTML = `
+                            <td>${row.jugada}</td>
+                        `;
+        
+                        montoRow.innerHTML = `
+                            <td></td>
+                            <td class="pro">${row.precio_unit}</td>
+                        `;
+        
+                        tablaItems.appendChild(jugadaRow);
+                        tablaItems.appendChild(montoRow);
+                    });
+                </script>
+            </table>
+        </div>      
+
+        
+
+        
+        
+        <div class="totalsizquierdo">
+            <p id="recibido" ></p>     
+            <p id="cambio" ></p>
+        </div>
+
+        <div class="lastTotal">
+            <p id="total" ></p>        
+        </div>
+        
+
+        </br>
+
+        <div id="creditos" class="creditos">
+            <table width="100%">
+                <tr>
+                    <td class="label">Pagado:</td>
+                    <td id="pagadoCredito"></td>
+                </tr>
+                <tr>
+                    <td class="label">Pendiente:</td>
+                    <td id="pendienteCredito"><strong></strong></td>
+                </tr>
+                <tr>
+                    <td id="fechaCredito" colspan="2" style="text-align: center;"></td>
+                </tr>           
+
+                
+            </table>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+            </br>
+        </div>
+
+        
+
+
+        
+        <div id="signature" class="signature">
+            <p>_______________________________________</p>
+            <p id="clienteCredito"></p>
+            </br>
+            </br>
+            </br>
+        </div>
+        
+        <div class="footer">
+            <p id="piePagina"></p>
+            <p id="otroPie"></p>
+        </div>
+    </div>  
+
+
+    
+    <script>
+        //Logo
+        var elemento30= document.getElementById('imagenLogo').src ='https://drive.google.com/thumbnail?id=' + idLogo;
+        
+        // Valores encabezado despues del logo
+        var elemento1=document.getElementById("descripcion").textContent = descripcion
+
+        //valores datos de la factura
+        var elemento8=document.getElementById("noTicket").textContent = "Ticket #" + noTicket
+        var elemento9=document.getElementById("Loterias").textContent = "Loterias: " + Loterias 
+        var elemento12=document.getElementById("fecha").textContent = "Fecha: " + fecha 
+        var elemento13=document.getElementById("hora").textContent = "Hora: " + hora 
+        
+        //valores totales factura
+        var elemento19=document.getElementById("total").textContent = "Total: " + total
+        
+
+        
+        //pies de factura   
+        var elemento23=document.getElementById("piePagina").textContent = piePagina
+        var elemento24=document.getElementById("otroPie").textContent = otroPie
+        
+
+    </script>
+
+</body>
+</html>

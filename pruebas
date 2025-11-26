@@ -6,18 +6,14 @@
       <eNCF>B0100000817</eNCF>
       <FechaVencimientoSecuencia>31-12-2026</FechaVencimientoSecuencia>
       <IndicadorEnvioDiferido>0</IndicadorEnvioDiferido>
-      <IndicadorMontoGravado>0</IndicadorMontoGravado>
+      <IndicadorMontoGravado>1</IndicadorMontoGravado>
       <TipoIngresos>6</TipoIngresos>
       <TipoPago>1</TipoPago>
       <TablaFormasPago>
         <FormaDePago>
           <FormaPago>1</FormaPago>
-          <MontoPago>100</MontoPago>
         </FormaDePago>
       </TablaFormasPago>
-      <TipoCuentaPago>AH</TipoCuentaPago>
-      <NumeroCuentaPago>3500229593</NumeroCuentaPago>
-      <BancoPago>Banreservas</BancoPago>
       <FechaDesde>30-10-2025</FechaDesde>
       <FechaHasta>24-12-2025</FechaHasta>
       <TotalPaginas>1</TotalPaginas>
@@ -29,13 +25,9 @@
       <DireccionEmisor>La Sirena Bartolomé Colon</DireccionEmisor>
       <Municipio>250100</Municipio>
       <Provincia>250000</Provincia>
-      <TablaTelefonoEmisor>
-        <TelefonoEmisor></TelefonoEmisor>
-        <TelefonoEmisor></TelefonoEmisor>
-      </TablaTelefonoEmisor>
       <NumeroFacturaInterna>3448ccd1</NumeroFacturaInterna>
       <NumeroPedidoInterno>192</NumeroPedidoInterno>
-      <FechaEmision>19- 11-AAAA</FechaEmision>
+      <FechaEmision>19-11-2025</FechaEmision>
     </Emisor>
     <Comprador>
       <RNCComprador>102318532</RNCComprador>
@@ -73,29 +65,29 @@
       <NumeroAlbaran>A</NumeroAlbaran>
     </Transporte>
     <Totales>
-      <MontoGravadoTotal>559.32</MontoGravadoTotal>
-      <MontoGravadoI1>0.00</MontoGravadoI1>
-      <MontoGravadoI2>0.00</MontoGravadoI2>
-      <MontoGravadoI3>0.00</MontoGravadoI3>
-      <MontoExento>0.00</MontoExento>
+      <MontoGravadoTotal>0000000000000559.32</MontoGravadoTotal>
+      <MontoGravadoI1>0000000000000000.00</MontoGravadoI1>
+      <MontoGravadoI2>0000000000000000.00</MontoGravadoI2>
+      <MontoGravadoI3>0000000000000000.00</MontoGravadoI3>
+      <MontoExento>0000000000000000.00</MontoExento>
       <ITBIS1>18</ITBIS1>
       <ITBIS2>16</ITBIS2>
       <ITBIS3>0</ITBIS3>
-      <TotalITBIS>$100.68</TotalITBIS>
-      <TotalITBIS1>0.00</TotalITBIS1>
-      <TotalITBIS2>0.00</TotalITBIS2>
-      <TotalITBIS3>0.00</TotalITBIS3>
+      <TotalITBIS>null</TotalITBIS>
+      <TotalITBIS1>0000000000000000.00</TotalITBIS1>
+      <TotalITBIS2>0000000000000000.00</TotalITBIS2>
+      <TotalITBIS3>0000000000000000.00</TotalITBIS3>
     </Totales>
     <OtraMoneda>
-      <MontoGravadoTotalOtraMoneda>0.00</MontoGravadoTotalOtraMoneda>
-      <MontoGravado1OtraMoneda>0.00</MontoGravado1OtraMoneda>
-      <MontoGravado2OtraMoneda>0.00</MontoGravado2OtraMoneda>
-      <MontoGravado3OtraMoneda>0.00</MontoGravado3OtraMoneda>
-      <MontoExentoOtraMoneda>0.00</MontoExentoOtraMoneda>
-      <TotalITBISOtraMoneda>$0.00</TotalITBISOtraMoneda>
-      <TotalITBIS1OtraMoneda>0.00</TotalITBIS1OtraMoneda>
-      <TotalITBIS2OtraMoneda>0.00</TotalITBIS2OtraMoneda>
-      <TotalITBIS3OtraMoneda>0.00</TotalITBIS3OtraMoneda>
+      <MontoGravadoTotalOtraMoneda>0000000000000000.00</MontoGravadoTotalOtraMoneda>
+      <MontoGravado1OtraMoneda>0000000000000000.00</MontoGravado1OtraMoneda>
+      <MontoGravado2OtraMoneda>0000000000000000.00</MontoGravado2OtraMoneda>
+      <MontoGravado3OtraMoneda>0000000000000000.00</MontoGravado3OtraMoneda>
+      <MontoExentoOtraMoneda>0000000000000000.00</MontoExentoOtraMoneda>
+      <TotalITBISOtraMoneda>null</TotalITBISOtraMoneda>
+      <TotalITBIS1OtraMoneda>0000000000000000.00</TotalITBIS1OtraMoneda>
+      <TotalITBIS2OtraMoneda>0000000000000000.00</TotalITBIS2OtraMoneda>
+      <TotalITBIS3OtraMoneda>0000000000000000.00</TotalITBIS3OtraMoneda>
     </OtraMoneda>
   </Encabezado>
   <DetallesItems>
@@ -109,33 +101,33 @@
       </TablaCodigosItem>
       <IndicadorFacturacion>1</IndicadorFacturacion>
       <Retencion>
-        <MontoITBISRetenido>7.32</MontoITBISRetenido>
-        <MontoISRRetenido>5.56</MontoISRRetenido>
+        <MontoITBISRetenido>0000000000000007.32</MontoITBISRetenido>
+        <MontoISRRetenido>0000000000000005.56</MontoISRRetenido>
       </Retencion>
       <NombreItem>CAFÉ CON LECHE</NombreItem>
       <IndicadorBienoServicio>2</IndicadorBienoServicio>
       <DescripcionItem>.</DescripcionItem>
-      <CantidadItem>2</CantidadItem>
-      <CantidadReferencia>2</CantidadReferencia>
+      <CantidadItem>0000000000000002.00</CantidadItem>
+      <CantidadReferencia>0000000000000002.00</CantidadReferencia>
       <TablaSubcantidad>
         <SubcantidadItem>
-        <Subcantidad>11/19/2025</Subcantidad>
+        <Subcantidad>null</Subcantidad>
         <CodigoSubcantidad>11/19/2025</CodigoSubcantidad>
         </SubcantidadItem>
       </TablaSubcantidad>
-      <PrecioUnitarioReferencia>80.00</PrecioUnitarioReferencia>
-      <PrecioUnitarioItem>80.00</PrecioUnitarioItem>
+      <PrecioUnitarioReferencia>null</PrecioUnitarioReferencia>
+      <PrecioUnitarioItem>0000000000000080.0000</PrecioUnitarioItem>
       <TablaSubDescuento>
         <SubDescuento>
         <TipoSubDescuento>$</TipoSubDescuento>
-        <SubDescuentoPorcentaje>0</SubDescuentoPorcentaje>
-        <MontoSubDescuento></MontoSubDescuento>
+        <SubDescuentoPorcentaje>000.00</SubDescuentoPorcentaje>
+        <MontoSubDescuento>0000000000000000.00</MontoSubDescuento>
         </SubDescuento>
       </TablaSubDescuento>
       <TablaSubRecargo>
         <SubRecargo>
           <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo></MontoSubRecargo>
+          <MontoSubRecargo>0000000000000000.00</MontoSubRecargo>
         </SubRecargo>
       </TablaSubRecargo>
       <TablaImpuestoAdicional>
@@ -151,7 +143,7 @@
         <TotalITBISOtraMoneda>0</TotalITBISOtraMoneda>
         <MontoTotalOtraMoneda>0</MontoTotalOtraMoneda>
       </OtraMonedaDetalle>
-      <MontoItem>$160.00</MontoItem>
+      <MontoItem>null</MontoItem>
     </Item>
     <Item>
       <NumeroLinea>1478</NumeroLinea>
@@ -163,33 +155,33 @@
       </TablaCodigosItem>
       <IndicadorFacturacion>1</IndicadorFacturacion>
       <Retencion>
-        <MontoITBISRetenido>22.88</MontoITBISRetenido>
-        <MontoISRRetenido>17.37</MontoISRRetenido>
+        <MontoITBISRetenido>0000000000000022.88</MontoITBISRetenido>
+        <MontoISRRetenido>0000000000000017.37</MontoISRRetenido>
       </Retencion>
       <NombreItem>COMBO DE VASO</NombreItem>
       <IndicadorBienoServicio>2</IndicadorBienoServicio>
       <DescripcionItem>.</DescripcionItem>
-      <CantidadItem>2</CantidadItem>
-      <CantidadReferencia>2</CantidadReferencia>
+      <CantidadItem>0000000000000002.00</CantidadItem>
+      <CantidadReferencia>0000000000000002.00</CantidadReferencia>
       <TablaSubcantidad>
         <SubcantidadItem>
-        <Subcantidad>11/22/2025</Subcantidad>
+        <Subcantidad>null</Subcantidad>
         <CodigoSubcantidad>11/22/2025</CodigoSubcantidad>
         </SubcantidadItem>
       </TablaSubcantidad>
-      <PrecioUnitarioReferencia>250.00</PrecioUnitarioReferencia>
-      <PrecioUnitarioItem>250.00</PrecioUnitarioItem>
+      <PrecioUnitarioReferencia>null</PrecioUnitarioReferencia>
+      <PrecioUnitarioItem>0000000000000250.0000</PrecioUnitarioItem>
       <TablaSubDescuento>
         <SubDescuento>
         <TipoSubDescuento>$</TipoSubDescuento>
-        <SubDescuentoPorcentaje>0</SubDescuentoPorcentaje>
-        <MontoSubDescuento></MontoSubDescuento>
+        <SubDescuentoPorcentaje>000.00</SubDescuentoPorcentaje>
+        <MontoSubDescuento>0000000000000000.00</MontoSubDescuento>
         </SubDescuento>
       </TablaSubDescuento>
       <TablaSubRecargo>
         <SubRecargo>
           <TipoSubRecargo>$</TipoSubRecargo>
-          <MontoSubRecargo></MontoSubRecargo>
+          <MontoSubRecargo>0000000000000000.00</MontoSubRecargo>
         </SubRecargo>
       </TablaSubRecargo>
       <TablaImpuestoAdicional>
@@ -205,7 +197,7 @@
         <TotalITBISOtraMoneda>0</TotalITBISOtraMoneda>
         <MontoTotalOtraMoneda>0</MontoTotalOtraMoneda>
       </OtraMonedaDetalle>
-      <MontoItem>$500.00</MontoItem>
+      <MontoItem>null</MontoItem>
     </Item>
   </DetallesItems>
 </ECF>
