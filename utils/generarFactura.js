@@ -1,4 +1,5 @@
 const { create } = require("xmlbuilder2");
+const { subirXMLaDrive } = require("./enviarXMLGoogleDirve"); // importa la función
 // Función para IdDoc
 
 const {
@@ -20,7 +21,7 @@ const {
 
 function crearIdDoc(idDoc) {
   const lines = [];
-  const cheque = false;
+  let cheque = false;
 
   
 
@@ -29,6 +30,10 @@ function crearIdDoc(idDoc) {
   if (idDoc.TipoeCF) lines.push(`${INDENT_aux6}<TipoeCF>${idDoc.TipoeCF}</TipoeCF>`);
   if (idDoc.eNCF) lines.push(`${INDENT_aux6}<eNCF>${idDoc.eNCF}</eNCF>`);
   if (idDoc.FechaVencimientoSecuencia) lines.push(`${INDENT_aux6}<FechaVencimientoSecuencia>${idDoc.FechaVencimientoSecuencia}</FechaVencimientoSecuencia>`);
+
+  if (idDoc.IndicadorNotaCredito) lines.push(`${INDENT_aux6}<IndicadorNotaCredito>${idDoc.IndicadorNotaCredito}</IndicadorNotaCredito>`);
+
+
   if (idDoc.IndicadorEnvioDiferido && idDoc.IndicadorEnvioDiferido>0) lines.push(`${INDENT_aux6}<IndicadorEnvioDiferido>${idDoc.IndicadorEnvioDiferido}</IndicadorEnvioDiferido>`);
   if (idDoc.IndicadorMontoGravado) lines.push(`${INDENT_aux6}<IndicadorMontoGravado>${idDoc.IndicadorMontoGravado}</IndicadorMontoGravado>`);
   if (idDoc.IndicadorServicioTodoIncluido) lines.push(`${INDENT_aux6}<IndicadorServicioTodoIncluido>${idDoc.IndicadorServicioTodoIncluido}</IndicadorServicioTodoIncluido>`);
@@ -91,15 +96,6 @@ function crearEmisor(emisor) {
   if (emisor.Provincia)
     lines.push(`${INDENT_aux6}<Provincia>${emisor.Provincia}</Provincia>`);
 
-  // TablaTelefonoEmisor
-  // if (emisor.Telefonos && emisor.Telefonos.length > 0) {
-  //   lines.push(`${INDENT_aux6}<TablaTelefonoEmisor>`);
-  //   emisor.Telefonos.forEach(t => {
-  //     lines.push(`${INDENT_aux8}<TelefonoEmisor>${t}</TelefonoEmisor>`);
-  //   });
-  //   lines.push(`${INDENT_aux6}</TablaTelefonoEmisor>`);
-  // }
-
   if (emisor.Telefonos && emisor.Telefonos.some(t => t && t.trim() !== "")) {
     lines.push(`${INDENT_aux6}<TablaTelefonoEmisor>`);
     emisor.Telefonos
@@ -154,6 +150,10 @@ function crearComprador(comprador) {
   if (comprador.RNCComprador)
     lines.push(`${INDENT_aux6}<RNCComprador>${comprador.RNCComprador}</RNCComprador>`);
 
+  if (comprador.IdentificadorExtranjero)
+    lines.push(`${INDENT_aux6}<IdentificadorExtranjero>${comprador.IdentificadorExtranjero}</IdentificadorExtranjero>`);
+
+
   if (comprador.RazonSocialComprador)
     lines.push(`${INDENT_aux6}<RazonSocialComprador>${comprador.RazonSocialComprador}</RazonSocialComprador>`);
 
@@ -171,6 +171,10 @@ function crearComprador(comprador) {
 
   if (comprador.ProvinciaComprador)
     lines.push(`${INDENT_aux6}<ProvinciaComprador>${comprador.ProvinciaComprador}</ProvinciaComprador>`);
+
+  if (comprador.PaisComprador)
+    lines.push(`${INDENT_aux6}<PaisComprador>${comprador.PaisComprador}</PaisComprador>`);
+
 
   if (comprador.FechaEntrega)
     lines.push(`${INDENT_aux6}<FechaEntrega>${comprador.FechaEntrega}</FechaEntrega>`);
@@ -224,6 +228,47 @@ function crearInformacionesAdicionales(info) {
   if (info.NumeroReferencia)
     lines.push(`${INDENT_aux6}<NumeroReferencia>${info.NumeroReferencia}</NumeroReferencia>`);
 
+
+
+
+
+  if (info.NombrePuertoEmbarque)
+    lines.push(`${INDENT_aux6}<NombrePuertoEmbarque>${info.NombrePuertoEmbarque}</NombrePuertoEmbarque>`);
+
+  if (info.CondicionesEntrega)
+    lines.push(`${INDENT_aux6}<CondicionesEntrega>${info.CondicionesEntrega}</CondicionesEntrega>`);
+
+  if (info.TotalFob)
+    lines.push(`${INDENT_aux6}<TotalFob>${info.TotalFob}</TotalFob>`);
+
+  if (info.Seguro)
+    lines.push(`${INDENT_aux6}<Seguro>${info.Seguro}</Seguro>`);
+
+  if (info.Flete)
+    lines.push(`${INDENT_aux6}<Flete>${info.Flete}</Flete>`);
+
+  if (info.OtrosGastos)
+    lines.push(`${INDENT_aux6}<OtrosGastos>${info.OtrosGastos}</OtrosGastos>`);
+
+  if (info.TotalCif)
+    lines.push(`${INDENT_aux6}<TotalCif>${info.TotalCif}</TotalCif>`);
+
+  if (info.RegimenAduanero)
+    lines.push(`${INDENT_aux6}<RegimenAduanero>${info.RegimenAduanero}</RegimenAduanero>`);
+
+  if (info.NombrePuertoSalida)
+    lines.push(`${INDENT_aux6}<NombrePuertoSalida>${info.NombrePuertoSalida}</NombrePuertoSalida>`);
+
+if (info.NombrePuertoDesembarque)
+  lines.push(`${INDENT_aux6}<NombrePuertoDesembarque>${info.NombrePuertoDesembarque}</NombrePuertoDesembarque>`);
+
+
+
+
+
+
+
+
   if (info.PesoBruto)
     lines.push(`${INDENT_aux6}<PesoBruto>${info.PesoBruto}</PesoBruto>`);
 
@@ -261,24 +306,59 @@ function crearTransporte(transporte) {
 
   lines.push(`${INDENT_aux4}<Transporte>`);
 
+  // 78 - ViaTransporte
+  if (transporte.ViaTransporte)
+    lines.push(`${INDENT_aux6}<ViaTransporte>${transporte.ViaTransporte}</ViaTransporte>`);
+
+  // 79 - PaisOrigen
+  if (transporte.PaisOrigen)
+    lines.push(`${INDENT_aux6}<PaisOrigen>${transporte.PaisOrigen}</PaisOrigen>`);
+
+  // 80 - DireccionDestino
+  if (transporte.DireccionDestino)
+    lines.push(`${INDENT_aux6}<DireccionDestino>${transporte.DireccionDestino}</DireccionDestino>`);
+
+  // 81 - PaisDestino
+  if (transporte.PaisDestino)
+    lines.push(`${INDENT_aux6}<PaisDestino>${transporte.PaisDestino}</PaisDestino>`);
+
+  // 82 - RNCIdentificacionCompaniaTransportista
+  if (transporte.RNCIdentificacionCompaniaTransportista)
+    lines.push(`${INDENT_aux6}<RNCIdentificacionCompaniaTransportista>${transporte.RNCIdentificacionCompaniaTransportista}</RNCIdentificacionCompaniaTransportista>`);
+
+  // 83 - NombreCompaniaTransportista
+  if (transporte.NombreCompaniaTransportista)
+    lines.push(`${INDENT_aux6}<NombreCompaniaTransportista>${transporte.NombreCompaniaTransportista}</NombreCompaniaTransportista>`);
+
+  // 84 - NumeroViaje
+  if (transporte.NumeroViaje)
+    lines.push(`${INDENT_aux6}<NumeroViaje>${transporte.NumeroViaje}</NumeroViaje>`);
+
+  // 85 - Conductor
   if (transporte.Conductor)
     lines.push(`${INDENT_aux6}<Conductor>${transporte.Conductor}</Conductor>`);
 
+  // 86 - DocumentoTransporte
   if (transporte.DocumentoTransporte)
     lines.push(`${INDENT_aux6}<DocumentoTransporte>${transporte.DocumentoTransporte}</DocumentoTransporte>`);
 
+  // 87 - Ficha
   if (transporte.Ficha)
     lines.push(`${INDENT_aux6}<Ficha>${transporte.Ficha}</Ficha>`);
 
+  // 88 - Placa
   if (transporte.Placa)
     lines.push(`${INDENT_aux6}<Placa>${transporte.Placa}</Placa>`);
 
+  // 89 - RutaTransporte
   if (transporte.RutaTransporte)
     lines.push(`${INDENT_aux6}<RutaTransporte>${transporte.RutaTransporte}</RutaTransporte>`);
 
+  // 90 - ZonaTransporte
   if (transporte.ZonaTransporte)
     lines.push(`${INDENT_aux6}<ZonaTransporte>${transporte.ZonaTransporte}</ZonaTransporte>`);
 
+  // 91 - NumeroAlbaran
   if (transporte.NumeroAlbaran)
     lines.push(`${INDENT_aux6}<NumeroAlbaran>${transporte.NumeroAlbaran}</NumeroAlbaran>`);
 
@@ -286,6 +366,7 @@ function crearTransporte(transporte) {
 
   return lines.join("\n");
 }
+
 
 
 
@@ -781,7 +862,7 @@ function crearPagina(pagina) {
     lines.push(`${INDENT_aux6}<MontoSubtotalPagina>${formatNumberDecimal16y2(pagina.MontoSubtotalPagina)}</MontoSubtotalPagina>`);
 
   if (pagina.SubtotalMontoNoFacturablePagina !== undefined && pagina.SubtotalMontoNoFacturablePagina !== null)
-    lines.push(`${INDENT_aux6}<SubtotalMontoNoFacturablePagina>${(pagina.SubtotalMontoNoFacturablePagina)}</SubtotalMontoNoFacturablePagina>`);
+    lines.push(`${INDENT_aux6}<SubtotalMontoNoFacturablePagina>${formatNumberDecimal16y2(pagina.SubtotalMontoNoFacturablePagina)}</SubtotalMontoNoFacturablePagina>`);
 
   lines.push(`${INDENT_aux4}</Pagina>`);
 
@@ -815,6 +896,10 @@ function crearInformacionReferencia(info) {
 
   if (info.CodigoModificacion)
     lines.push(`${INDENT_aux4}<CodigoModificacion>${info.CodigoModificacion}</CodigoModificacion>`);
+
+  if (info.RazonModificacion)
+    lines.push(`${INDENT_aux4}<RazonModificacion>${info.RazonModificacion}</RazonModificacion>`);
+
 
   lines.push(`${INDENT_aux2}</InformacionReferencia>`);
 
@@ -860,6 +945,190 @@ function crearFactura(datosFactura) {
   xml += `</ECF>`;
   return xml;
 }
+
+
+const datosPrueba = {
+    Encabezado : {
+    IdDoc: {
+      TipoeCF: "01",
+      eNCF: "B0100000001",
+      FechaVencimientoSecuencia: "2025-12-31",
+      IndicadorNotaCredito: "0",
+      IndicadorEnvioDiferido: 1,
+      IndicadorMontoGravado: 1,
+      TipoPago: 2,
+      FechaLimitePago: "2026-01-15",
+      TerminoPago: "Contado",
+      TablaFormasPago: [
+        { FormaPago: 1, MontoPago: 1000.50 },
+        { FormaPago: 2, MontoPago: 500.75 }
+      ],
+      TipoCuentaPago: "Ahorros",
+      NumeroCuentaPago: "123456789",
+      BancoPago: "Banco de Prueba",
+      FechaDesde: "2025-11-01",
+      FechaHasta: "2025-11-30",
+      TotalPaginas: 2
+    },
+    Emisor: {
+      RNCEmisor: "131234567",
+      RazonSocialEmisor: "Mi Empresa SRL",
+      NombreComercial: "Mi Empresa",
+      Sucursal: "01",
+      DireccionEmisor: "Calle Falsa 123",
+      Municipio: "Santo Domingo",
+      Provincia: "Distrito Nacional",
+      Telefonos: ["809-555-1234", "809-555-5678"],
+      CorreoEmisor: "contacto@empresa.com",
+      WebSite: "www.empresa.com",
+      ActividadEconomica: "Comercio",
+      CodigoVendedor: "001",
+      NumeroFacturaInterna: "F123",
+      NumeroPedidoInterno: "P123",
+      ZonaVenta: "Zona Norte",
+      RutaVenta: "Ruta 1",
+      InformacionAdicionalEmisor: "Datos extra",
+      FechaEmision: "2025-11-30"
+    },
+    Comprador: {
+      RNCComprador: "101234567",
+      RazonSocialComprador: "Cliente Ejemplo SRL",
+      ContactoComprador: "Juan Perez",
+      CorreoComprador: "juan@cliente.com",
+      DireccionComprador: "Av. Siempre Viva 456",
+      MunicipioComprador: "Santiago",
+      ProvinciaComprador: "Santiago",
+      PaisComprador: "República Dominicana",
+      FechaEntrega: "2025-12-05",
+      ContactoEntrega: "Ana Lopez",
+      DireccionEntrega: "Calle Secundaria 789",
+      TelefonoAdicional: "809-555-9999",
+      FechaOrdenCompra: "2025-11-28",
+      NumeroOrdenCompra: "OC-001",
+      CodigoInternoComprador: "C001",
+      ResponsablePago: "Juan Perez",
+      InformacionAdicionalComprador: "Observaciones"
+    },
+    InformacionesAdicionales: {
+      FechaEmbarque: "2025-12-01",
+      NumeroEmbarque: "EMB-001",
+      NumeroContenedor: "CONT-001",
+      NumeroReferencia: "REF-001",
+      NombrePuertoEmbarque: "Puerto de Santo Domingo",
+      CondicionesEntrega: "FOB",
+      TotalFob: 1200.00,
+      Seguro: 50.00,
+      Flete: 100.00,
+      OtrosGastos: 25.00,
+      TotalCif: 1375.00,
+      RegimenAduanero: "Importación",
+      NombrePuertoSalida: "Puerto de Miami",
+      NombrePuertoDesembarque: "Puerto de Santo Domingo",
+      PesoBruto: 500,
+      PesoNeto: 480,
+      UnidadPesoBruto: "Kg",
+      UnidadPesoNeto: "Kg",
+      CantidadBulto: 10,
+      UnidadBulto: "Caja",
+      VolumenBulto: 2.5,
+      UnidadVolumen: "m3"
+    },
+    Transporte: {
+      ViaTransporte: "Marítimo",
+      PaisOrigen: "EEUU",
+      DireccionDestino: "Puerto de Santo Domingo",
+      PaisDestino: "República Dominicana",
+      RNCIdentificacionCompaniaTransportista: "131234567",
+      NombreCompaniaTransportista: "Transportes SRL",
+      NumeroViaje: "V001",
+      Conductor: "Pedro Gómez",
+      DocumentoTransporte: "DT-001",
+      Ficha: "F001",
+      Placa: "ABC-123",
+      RutaTransporte: "Ruta 1",
+      ZonaTransporte: "Zona Norte",
+      NumeroAlbaran: "ALB-001"
+    },
+    Totales: {
+      MontoGravadoTotal: 1000.50,
+      MontoExento: 0,
+      TotalITBIS: 180.09,
+      MontoTotal: 1180.59,
+      MontoNoFacturable: 0,
+      SaldoAnterior: 0,
+      MontoAvancePago: 0,
+      ValorPagar: 1180.59
+    },
+    OtraMoneda: {
+      TipoMoneda: "USD",
+      TipoCambio: 54.50,
+      MontoTotalOtraMoneda: 21.64
+    },
+    },
+  DetallesItems: [
+    {
+      NumeroLinea: 1,
+      NombreItem: "Producto A",
+      CantidadItem: 2,
+      UnidadMedida: "UND",
+      PrecioUnitarioItem: 500.25,
+      MontoItem: 1000.50
+    },
+    {
+      NumeroLinea: 2,
+      NombreItem: "Producto B",
+      CantidadItem: 1,
+      UnidadMedida: "UND",
+      PrecioUnitarioItem: 180.09,
+      MontoItem: 180.09
+    }
+  ],
+  Subtotales: [
+    {
+      NumeroSubTotal: 1,
+      SubTotalMontoGravadoTotal: 1000.50,
+      MontoSubTotal: 1000.50
+    }
+  ],
+  DescuentosORecargos: [
+    {
+      NumeroLinea: 1,
+      TipoAjuste: "Descuento",
+      ValorDescuentooRecargo: 10,
+      MontoDescuentooRecargo: 10.00
+    }
+  ],
+  Paginacion: [
+    {
+      PaginaNo: 1,
+      NoLineaDesde: 1,
+      NoLineaHasta: 2,
+      MontoSubtotalPagina: 1180.59
+    }
+  ],
+  InformacionReferencia: {
+    NCFModificado: "B0100000000",
+    FechaNCFModificado: "2025-11-29"
+  }
+};
+
+// Ejemplo de uso
+// async function main() {
+//   const xml = crearFactura(datosPrueba);
+
+//   const respuesta = await subirXMLaDrive(
+//     xml,
+//     "factura_0001.xml",
+//     "Cliente_001",
+//     "Factura"
+//   );
+
+//   console.log(respuesta);
+// }
+
+// main();
+
+
 
 
 module.exports = { crearFactura };
