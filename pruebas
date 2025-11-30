@@ -76,7 +76,7 @@
       <ITBIS1>18</ITBIS1>
       <ITBIS2>16</ITBIS2>
       <ITBIS3>0</ITBIS3>
-      <TotalITBIS>null</TotalITBIS>
+      <TotalITBIS>0000000000000100.68</TotalITBIS>
       <TotalITBIS1>0000000000000000.00</TotalITBIS1>
       <TotalITBIS2>0000000000000000.00</TotalITBIS2>
       <TotalITBIS3>0000000000000000.00</TotalITBIS3>
@@ -87,7 +87,7 @@
       <MontoGravado2OtraMoneda>0000000000000000.00</MontoGravado2OtraMoneda>
       <MontoGravado3OtraMoneda>0000000000000000.00</MontoGravado3OtraMoneda>
       <MontoExentoOtraMoneda>0000000000000000.00</MontoExentoOtraMoneda>
-      <TotalITBISOtraMoneda>null</TotalITBISOtraMoneda>
+      <TotalITBISOtraMoneda>0000000000000000.00</TotalITBISOtraMoneda>
       <TotalITBIS1OtraMoneda>0000000000000000.00</TotalITBIS1OtraMoneda>
       <TotalITBIS2OtraMoneda>0000000000000000.00</TotalITBIS2OtraMoneda>
       <TotalITBIS3OtraMoneda>0000000000000000.00</TotalITBIS3OtraMoneda>
@@ -146,7 +146,7 @@
         <TotalITBISOtraMoneda>0</TotalITBISOtraMoneda>
         <MontoTotalOtraMoneda>0</MontoTotalOtraMoneda>
       </OtraMonedaDetalle>
-      <MontoItem>null</MontoItem>
+      <MontoItem>0000000000000160.00</MontoItem>
     </Item>
     <Item>
       <NumeroLinea>1478</NumeroLinea>
@@ -200,7 +200,7 @@
         <TotalITBISOtraMoneda>0</TotalITBISOtraMoneda>
         <MontoTotalOtraMoneda>0</MontoTotalOtraMoneda>
       </OtraMonedaDetalle>
-      <MontoItem>null</MontoItem>
+      <MontoItem>0000000000000500.00</MontoItem>
     </Item>
   </DetallesItems>
 </ECF>
