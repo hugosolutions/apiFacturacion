@@ -115,7 +115,7 @@ function crearSignatureAnulacion(data) {
   return lines.join("\n");
 }
 function generarXMLAnulacion(datos) {
-  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<AnulacioneNCF>`;  
+  let xml = `<?xml version="1.0" encoding="UTF-8"?>\n<AnulacioneNCF>`;
 
   // ENCABEZADO
   if (datos.Encabezado && Object.keys(datos.Encabezado).length > 0) {

@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const { crearFactura } = require("../utils/generarFactura"); // importa la función
+const { subirXMLaDrive } = require("./enviarXMLGoogleDirve"); // importa la función
 
 
 router.post("/", async (req, res) => {
@@ -8,6 +9,13 @@ router.post("/", async (req, res) => {
     const datosFactura = req.body;
 
     const xml = crearFactura(datosFactura);
+
+    const respuesta = await subirXMLaDrive(
+      xml,
+      "anulacion_0001.xml",
+      "Cliente_001",
+      "anulaciones"
+    );
     // const xml = datosFactura;
     console.log("Datos de la factura recibidos:", datosFactura);
 
